@@ -1,42 +1,50 @@
 .App {
   text-align: center;
+  background-color: #0F141B;
 }
 
 .App-header {
   background-color: #D62839;
   min-height: 3vh;
   max-height: 10vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #DEE2E6;
 }
 
 .App-section {
-  background-color: #042522;
+  background-color: #0F141B;
+  background-image: url('./static/img/amacat.png');
+  background-repeat: no-repeat;
+  background-attachment: scroll; 
+  background-size: contain;
   min-height: 80vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #DEE2E6;
 }
 
 .App-footer {
   background-color: #1D3557;
   min-height: 5vh;
-  max-height: 10vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #DEE2E6;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.navbar {
+  background-color: #D62839;
+}
+
+.btn-info {
+  color: #DEE2E6;
 }
