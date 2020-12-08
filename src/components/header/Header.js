@@ -1,11 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import NavBar from './NavBar';
+import Logo from '../Logo';
 
 export default function Header() {
     return (
         <header className="App-header">
-            <NavBar />
+            <Logo />
+            <button>Giriş Yap</button>
         </header>
     )
 }
