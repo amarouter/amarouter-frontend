@@ -1,20 +1,20 @@
-import './App.css';
+import React from 'react';
 
+import Container from 'react-bootstrap/Container';
+
+import './static/css/App.css';
 import Header from './components/header/Header';
+import LandingContent from './components/main/Main';
 import Footer from './components/footer/Footer';
 
 function App() {
   return (
     <div className="App">
-      <header>
-        <Header />
-      </header>
-      <section className="App-section">
-        <Header />
-      </section>
-      <footer className="App-footer">
-        <Footer />
-      </footer>
+      <Header />
+      <Container>
+        <LandingContent />
+      </Container>
+      <Footer />
     </div>
   );
 }
