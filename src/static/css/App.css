@@ -13,7 +13,7 @@
 
 .App-section {
   background-color: #0F141B;
-  background-image: url('./static/img/amacat.png');
+  background-image: url('../img/amacat.png');
   background-repeat: no-repeat;
   background-attachment: scroll; 
   background-size: contain;

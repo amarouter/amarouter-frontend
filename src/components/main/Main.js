@@ -32,7 +32,7 @@ export default function Main() {
                                         data-holder-rendered="true" />
                                     <div className="card-body d-flex flex-column align-items-start">
                                         <h3 className="mb-0">
-                                            <p className="text-dark">JavaScript</p>
+                                            <p className="text-dark">Python</p>
                                         </h3>
                                         <div className="mb-1 text-muted">öğrenmek istiyorsak tam yerindeyiz.</div>
                                     </div>
