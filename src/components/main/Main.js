@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Row, Col } from 'react-bootstrap';
 
+import javaScriptLogo from '../../static/img/JavaScriptLogo.png';
 import pythonLogo from '../../static/img/pythonLogo.png';
 
 
@@ -15,7 +16,7 @@ export default function Main() {
                             <Col>
                                 <div className="card flex-md-row mb-4 box-shadow h-md-250">
                                     <img className="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" 
-                                        alt="Thumbnail [200x250]" src={pythonLogo} width="50px" height="50px"
+                                        alt="Thumbnail [200x250]" src={javaScriptLogo} width="50px" height="50px"
                                         data-holder-rendered="true" />
                                     <div className="card-body d-flex flex-column align-items-start">
                                         <h3 className="mb-0">
@@ -26,7 +27,7 @@ export default function Main() {
                                 </div>
                             </Col>
                             <Col>
-                            <div className="card flex-md-row mb-4 box-shadow h-md-250">
+                                <div className="card flex-md-row mb-4 box-shadow h-md-250">
                                     <img className="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" 
                                         alt="Thumbnail [200x250]" src={pythonLogo} width="50px" height="50px"
                                         data-holder-rendered="true" />
