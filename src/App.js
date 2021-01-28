@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 
 import './static/css/App.css';
 import Header from './components/header/Header';
-import LandingContent from './components/main/Main';
+import Main from './components/main/Main';
 import Footer from './components/footer/Footer';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <Header />
       <Container>
-        <LandingContent />
+        <Main />
       </Container>
       <Footer />
     </div>
