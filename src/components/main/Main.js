@@ -2,8 +2,8 @@ import React from 'react'
 
 import { Row, Col } from 'react-bootstrap';
 
-import javaScriptLogo from '../../static/img/JavaScriptLogo.png';
-import pythonLogo from '../../static/img/pythonLogo.png';
+import javaScriptLogo from '../../images/JavaScriptLogo.png';
+import pythonLogo from '../../images/pythonLogo.png';
 
 
 export default function Main() {
