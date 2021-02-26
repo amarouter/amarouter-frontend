@@ -1,57 +1,155 @@
-import React from 'react'
+import React from "react";
+import { Row, Col, Form, Card, Image, Figure } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
-import { Row, Col } from 'react-bootstrap';
-
-import javaScriptLogo from '../../images/JavaScriptLogo.png';
-import pythonLogo from '../../images/pythonLogo.png';
-
+import javaScriptLogo from "../../images/JavaScriptLogo.png";
+import pythonLogo from "../../images/pythonLogo.png";
+import Logo from "../Logo";
+import VideoPhoto from "../../images/VideoPhoto.png";
+import RehberlerPhoto from "../../images/RehberlerPhoto.png";
+import BlogPhoto from "../../images/BlogPhoto.png";
+import CeviriPhoto from "../../images/CeviriPhoto.png";
 
 export default function Main() {
-    return (
-        <section className="App-section">
-            <Row>
-                <Col md={6}>
-                    <Row>
-                        <aside>
-                            <Col>
-                                <div className="card flex-md-row mb-4 box-shadow h-md-250">
-                                    <img className="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" 
-                                        alt="Thumbnail [200x250]" src={javaScriptLogo} width="50px" height="50px"
-                                        data-holder-rendered="true" />
-                                    <div className="card-body d-flex flex-column align-items-start">
-                                        <h3 className="mb-0">
-                                            <p className="text-dark">JavaScript</p>
-                                        </h3>
-                                        <div className="mb-1 text-muted">öğrenmek istiyorsak tam yerindeyiz.</div>
-                                    </div>
-                                </div>
-                            </Col>
-                            <Col>
-                                <div className="card flex-md-row mb-4 box-shadow h-md-250">
-                                    <img className="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" 
-                                        alt="Thumbnail [200x250]" src={pythonLogo} width="50px" height="50px"
-                                        data-holder-rendered="true" />
-                                    <div className="card-body d-flex flex-column align-items-start">
-                                        <h3 className="mb-0">
-                                            <p className="text-dark">Python</p>
-                                        </h3>
-                                        <div className="mb-1 text-muted">öğrenmek istiyorsak tam yerindeyiz.</div>
-                                    </div>
-                                </div>
-                            </Col>
-                        </aside>
-                    </Row>
-                </Col>
-                <Col md={6}>
-                    <article>
-                        <h3>Amarouter</h3>
-                        <p>
-                            Amarouter’a Hoşgeldiniz!!
-                            Amarouter üzerinden Python ve JavaScript kurslarının tadını çıkarabilirsiniz.
-                        </p>
-                    </article>
-                </Col>
-            </Row>
-        </section>
-    )
+  return (
+    <Container>
+      <section className="App-section">
+        <Col sm={1}></Col>
+        <Col sm={4}>
+          <Row>
+            <Logo />
+          </Row>
+          <br></br>
+          <Form>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Control
+                type="email"
+                placeholder="E-posta veya Kullanıcı Adı"
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+              <Form.Control type="password" placeholder="Şifre" />
+            </Form.Group>
+            <Form.Group controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Check me out" />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Giriş Yap
+            </Button>
+          </Form>
+          <br></br>
+          <Row>
+            <Button variant="secondary">Yeni Hesap Oluştur</Button>
+          </Row>
+        </Col>
+        <Col sm={7}></Col>
+      </section>
+      <section className="App-section2">
+        <Row>
+          <h3>Popüler kursları öğrenmek için doğru yerdesiniz </h3>
+        </Row>
+
+        <Row>
+          <Col xs={6} md={4}>
+            <Figure>
+              <Figure.Image
+                width={100}
+                height={100}
+                alt="JavaScript"
+                src={javaScriptLogo}
+              />
+              <Figure.Caption>
+                JavaScript
+              </Figure.Caption>
+            </Figure>
+          </Col>
+          <Col xs={6} md={4}>
+          <Figure>
+              <Figure.Image
+                width={100}
+                height={100}
+                alt="JavaScript"
+                src={javaScriptLogo}
+              />
+              <Figure.Caption>
+                JavaScript
+              </Figure.Caption>
+            </Figure>
+          </Col>
+          <Col xs={6} md={4}>
+          <Figure>
+              <Figure.Image
+                width={100}
+                height={100}
+                alt="JavaScript"
+                src={javaScriptLogo}
+              />
+              <Figure.Caption>
+                JavaScript
+              </Figure.Caption>
+            </Figure>
+          </Col>
+        </Row>
+        <br></br>
+        <Row>
+          <Col xs={3} md={3}>
+          <Figure>
+              <Figure.Image
+                width={200}
+                height={200}
+                alt="JavaScript"
+                src={RehberlerPhoto}
+              />
+              <Figure.Caption>
+                JavaScript
+              </Figure.Caption>
+            </Figure>
+          </Col>
+          <Col xs={3} md={3}>
+          <Figure>
+              <Figure.Image
+                width={200}
+                height={200}
+                alt="JavaScript"
+                src={VideoPhoto}
+              />
+              <Figure.Caption>
+                JavaScript
+              </Figure.Caption>
+            </Figure>
+          </Col>
+          <Col xs={3} md={3}>
+          <Figure>
+              <Figure.Image
+                width={200}
+                height={200}
+                alt="JavaScript"
+                src={BlogPhoto}
+              />
+              <Figure.Caption>
+                JavaScript
+              </Figure.Caption>
+            </Figure>
+          </Col>
+          <Col xs={3} md={3}>
+          <Figure>
+              <Figure.Image
+                width={200}
+                height={200}
+                alt="JavaScript"
+                src={CeviriPhoto}
+              />
+              <Figure.Caption>
+                JavaScript
+              </Figure.Caption>
+            </Figure>
+          </Col>
+        </Row>
+      </section>
+      <br></br>
+      <br></br>
+    </Container>
+  );
 }
