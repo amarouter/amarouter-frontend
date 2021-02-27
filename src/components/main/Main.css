@@ -1,0 +1,27 @@
+.App-header {
+  background-color: #0c010200;
+  width: 100%;
+  min-height: 4vh;
+  max-height: 12vh;
+  font-size: calc(10px + 2vmin);
+  color: #dee2e6;
+}
+
+.App-section {
+  background-image: url("../../images/amacat.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #dee2e6;
+}
+
+.App-section2 {
+  min-height: 80vh;
+  color: #dee2e6;
+}
