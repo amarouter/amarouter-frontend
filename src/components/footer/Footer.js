@@ -5,7 +5,7 @@ import Logo from '../Logo';
 
 export default function Footer() {
     return (
-        <footer className="App-footer">
+        <footer className="App-footer pt-3">
             <Container>
                 <Row>
                     <Col><Logo /></Col>

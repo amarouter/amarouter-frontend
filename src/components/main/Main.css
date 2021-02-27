@@ -1,3 +1,8 @@
+figcaption {
+  width: 90%;
+  color: #dee2e6 !important;
+}
+
 .App-header {
   background-color: #0c010200;
   width: 100%;
@@ -23,5 +28,51 @@
 
 .App-section2 {
   min-height: 80vh;
-  color: #dee2e6;
+  color: #dee2e6 !important;
+}
+
+.centered-text {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#formLogin {
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-bottom: 2em;
+  border-bottom-style: solid !important;
+  border-bottom-width: thin !important;
+  border-bottom-color: gray !important;
+}
+
+#btnGirisYap {
+  width: 100%;
+  font-weight: bold;
+}
+
+#aForgotPassword {
+  font-size: 75%;
+  color: #1E6094;
+}
+
+#btnHesapOlustur {
+  width: 24em;
+  font-weight: bold;
+}
+
+#rowLogo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#rowPhoto .figure-img {
+  position: relative;
+  text-align: center;
+  opacity: 0.6;
+  color: white;
 }

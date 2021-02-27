@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container, Row, Col, Button, Form, Card, Image, Figure } from "react-bootstrap";
+import { Row, Col, Button, Form } from "react-bootstrap";
 
 import Logo from "../Logo";
 import Header from "../header/Header";
@@ -19,7 +19,7 @@ function Section1() {
               <Logo />
             </Row>
             <br></br>
-            <Form>
+            <Form id="formLogin">
               <Form.Group controlId="formBasicEmail">
                 <Form.Control
                   type="email"
@@ -29,16 +29,19 @@ function Section1() {
               <Form.Group controlId="formBasicPassword">
                 <Form.Control type="password" placeholder="Şifre" />
               </Form.Group>
-              <Form.Group controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-              </Form.Group>
-              <Button variant="primary" type="submit">
+              <Button
+                variant="primary"
+                className="ama-bg-primary mb-3"
+                type="submit"
+                id="btnGirisYap"
+              >
                 Giriş Yap
               </Button>
+              <a id="aForgotPassword" href="#">Şifreni mi Unuttun?</a>
             </Form>
             <br></br>
-            <Row>
-              <Button variant="secondary">Yeni Hesap Oluştur</Button>
+            <Row className="justify-content-md-center">
+              <Button variant="secondary" id="btnHesapOlustur">Yeni Hesap Oluştur</Button>
             </Row>
           </Col>
           <Col sm={7}></Col>
