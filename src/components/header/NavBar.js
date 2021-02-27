@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Button, InputGroup, FormControl } from "react-bootstrap";
+import { BsSearch } from "react-icons/bs";
 
 export default function NavBar() {
   return (
@@ -11,12 +12,13 @@ export default function NavBar() {
             <li className="nav-item active">
               <InputGroup>
                 <FormControl
+                  id="txtSearch"
                   placeholder="Amarouter'da arama yapın"
                   aria-label="Search"
                   aria-describedby="basic-addon1"
                 />
-                <Button variant="outline-light">
-                  S
+                <Button variant="outline-light" className="ama-bg-primary">
+                  <BsSearch />
                 </Button>
               </InputGroup>
             </li>
