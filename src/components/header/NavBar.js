@@ -23,7 +23,7 @@ export default function NavBar() {
               </InputGroup>
             </li>
           </ul>
-          <Button variant="outline-light" className="ml-4">
+          <Button variant="outline-light" className="ml-4" size="lg">
             Blog
           </Button>
         </div>

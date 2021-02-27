@@ -30,10 +30,11 @@ function Section1() {
                 <Form.Control type="password" placeholder="Şifre" />
               </Form.Group>
               <Button
+                id="btnGirisYap"
                 variant="primary"
                 className="ama-bg-primary mb-3"
                 type="submit"
-                id="btnGirisYap"
+                size="lg"
               >
                 Giriş Yap
               </Button>
@@ -41,7 +42,7 @@ function Section1() {
             </Form>
             <br></br>
             <Row className="justify-content-md-center">
-              <Button variant="secondary" id="btnHesapOlustur">Yeni Hesap Oluştur</Button>
+              <Button id="btnHesapOlustur" variant="secondary" size="lg">Yeni Hesap Oluştur</Button>
             </Row>
           </Col>
           <Col sm={7}></Col>
