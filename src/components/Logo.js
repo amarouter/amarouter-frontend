@@ -1,12 +1,12 @@
 import React from 'react'
 
 import './Logo.css';
-import logo from '../logo.png';
+import logo from '../logo2.png';
 
 export default function Logo() {
     return (
         <div className="logo">
-            <img src={logo} className="App-logo" alt="logo" width="50px" height="50px" />
+            <img src={logo} className="App-logo" alt="logo" />
             <p>Amarouter</p>
         </div>
     )

@@ -49,9 +49,14 @@ figcaption {
   border-bottom-color: gray !important;
 }
 
+#formLogin ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-size: 120%;
+}
+
 #btnGirisYap {
   width: 100%;
   font-weight: bold;
+  border: none;
 }
 
 #aForgotPassword {
@@ -60,7 +65,7 @@ figcaption {
 }
 
 #btnHesapOlustur {
-  width: 19em;
+  width: 75%;
   font-weight: bold;
 }
 

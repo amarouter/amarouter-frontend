@@ -15,12 +15,11 @@ function Section1() {
         <Row>
           <Col sm={1}></Col>
           <Col sm={4}>
-            <Row>
+            <Row className="justify-content-md-center mb-5">
               <Logo />
             </Row>
-            <br></br>
             <Form id="formLogin">
-              <Form.Group controlId="formBasicEmail">
+              <Form.Group controlId="formBasicEmail" className="mb-3">
                 <Form.Control
                   type="email"
                   placeholder="E-posta veya Kullanıcı Adı"
@@ -32,17 +31,21 @@ function Section1() {
               <Button
                 id="btnGirisYap"
                 variant="primary"
-                className="ama-bg-primary mb-3"
+                className="ama-bg-primary mt-4 mb-3"
                 type="submit"
                 size="lg"
               >
                 Giriş Yap
               </Button>
-              <a id="aForgotPassword" href="#">Şifreni mi Unuttun?</a>
+              <a id="aForgotPassword" href="#">
+                Şifreni mi Unuttun?
+              </a>
             </Form>
             <br></br>
             <Row className="justify-content-md-center">
-              <Button id="btnHesapOlustur" variant="secondary" size="lg">Yeni Hesap Oluştur</Button>
+              <Button id="btnHesapOlustur" variant="secondary" size="lg">
+                Yeni Hesap Oluştur
+              </Button>
             </Row>
           </Col>
           <Col sm={7}></Col>
