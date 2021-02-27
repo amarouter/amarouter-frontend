@@ -29,6 +29,7 @@ figcaption {
 .App-section2 {
   min-height: 80vh;
   color: #dee2e6 !important;
+  background-image: linear-gradient(#131513, #101010);
 }
 
 .centered-text {

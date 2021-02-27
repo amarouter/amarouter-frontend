@@ -7,7 +7,7 @@ import Header from "../header/Header";
 
 function Section1() {
   return (
-    <div className="App-section mb-5">
+    <div className="App-section">
       <div className="container-fluid">
         <Row className="mb-5">
           <Header />

@@ -12,7 +12,7 @@ import CeviriPhoto from "../../images/CeviriPhoto.png";
 
 function Section1() {
   return (
-    <section className="App-section2 mt-5">
+    <section className="App-section2 pt-5 pb-5">
       <br />
       <br />
       <div className="container">
