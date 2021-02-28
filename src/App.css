@@ -29,7 +29,7 @@ input {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  font-size: calc(7px + vmin);
+  font-size: calc(7px + 1vmin);
   color: #DEE2E6;
   border-top-style: solid;
   border-top-width: thin;
