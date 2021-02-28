@@ -1,0 +1,84 @@
+figcaption {
+  width: 90%;
+  color: #dee2e6 !important;
+}
+
+.App-header {
+  background-color: #0c010200;
+  width: 100%;
+  min-height: 4vh;
+  max-height: 12vh;
+  font-size: calc(10px + 2vmin);
+  color: #dee2e6;
+}
+
+.App-section {
+  background-image: url("../../images/amacat.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #dee2e6;
+}
+
+.App-section2 {
+  min-height: 80vh;
+  color: #dee2e6 !important;
+  background-image: linear-gradient(#131513, #101010);
+}
+
+.centered-text {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#formLogin {
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-bottom: 2em;
+  border-bottom-style: solid !important;
+  border-bottom-width: thin !important;
+  border-bottom-color: gray !important;
+}
+
+#formLogin ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-size: 120%;
+}
+
+#btnGirisYap {
+  width: 100%;
+  font-weight: bold;
+  border: none;
+}
+
+#aForgotPassword {
+  font-size: 75%;
+  color: #1E6094;
+}
+
+#btnHesapOlustur {
+  width: 75%;
+  font-weight: bold;
+}
+
+#rowLogo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#rowPhoto .figure-img {
+  position: relative;
+  text-align: center;
+  opacity: 0.6;
+  color: white;
+}

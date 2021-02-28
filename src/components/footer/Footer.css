@@ -1,0 +1,10 @@
+ul.horizontal-list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+ul.horizontal-list li {
+  display: inline;
+}

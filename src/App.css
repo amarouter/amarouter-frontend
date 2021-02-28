@@ -3,30 +3,22 @@
   background-color: #0F141B;
 }
 
+input {
+  height: calc(1.5em + 1.5rem + 2px) !important;
+  background-color: #00000040 !important;
+  color: #DEE2E6 !important;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #DEE2E6 !important;
+  opacity: 0.7 !important; /* Firefox */
+}
+
 .App-header {
   background-color: #0c010200;
   min-height: 4vh;
   max-height: 12vh;
   font-size: calc(10px + 2vmin);
-  color: #DEE2E6;
-}
-
-.App-section {
-  background-image: url('./images/amacat.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: scroll; 
-  background-size: contain;
-  min-height: 80vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: #DEE2E6;
-}
-
-.App-section2 {
   color: #DEE2E6;
 }
 
@@ -44,21 +36,29 @@
   border-top-color: #303030;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-.navbar {
-  background-color: #0c01022f;
-}
-
-.btn-info {
-  color: #DEE2E6;
-}
-
 .App-footer h5 {
   border-bottom-style: solid;
   border-bottom-width: thin;
   border-bottom-color: gray;
 }
 
+.navbar {
+  background-color: #00000000;
+}
+
+.navbar .input-group {
+  border: 1px solid white;
+  border-radius: .25rem;
+}
+
+.btn-info {
+  color: #DEE2E6;
+}
+
+.ama-bg-primary {
+  background-color: #1E6094;
+}
+
+#txtSearch {
+  border: none !important;
+}
