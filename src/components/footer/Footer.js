@@ -32,10 +32,10 @@ export default function Footer() {
           <Col md={3}>
             <h5>Bizi Takip Edin</h5>
             <ul className="list-unstyled text-small horizontal-list">
-              <li><a href="https://github.com/amarouter" target="_blank"><FaGithub /></a></li>
-              <li><a href="https://www.youtube.com/channel/UC6179yTWBNkRatwNxntGMrQ" target="_blank"><FaYoutube /></a></li>
-              <li><a href="https://www.linkedin.com/in/amarouter/" target="_blank"><FaLinkedin /></a></li>
-              <li><a href="https://twitter.com/amarouterorg" target="_blank"><FaTwitter /></a></li>
+              <li><a href="https://github.com/amarouter" target="_blank" rel="noreferrer"><FaGithub /></a></li>
+              <li><a href="https://www.youtube.com/channel/UC6179yTWBNkRatwNxntGMrQ" target="_blank" rel="noreferrer"><FaYoutube /></a></li>
+              <li><a href="https://www.linkedin.com/in/amarouter/" target="_blank" rel="noreferrer"><FaLinkedin /></a></li>
+              <li><a href="https://twitter.com/amarouterorg" target="_blank" rel="noreferrer"><FaTwitter /></a></li>
             </ul>
           </Col>
         </Row>
