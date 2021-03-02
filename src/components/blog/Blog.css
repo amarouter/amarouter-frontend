@@ -1,3 +1,14 @@
 .component-blog {
     background-image: linear-gradient(#0C0B0B, #060606);
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.component-blog .list-group-item {
+    margin: 0,5px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    border-radius: 100px;
+
 }
