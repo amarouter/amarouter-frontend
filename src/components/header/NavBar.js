@@ -2,6 +2,7 @@ import React from "react";
 
 import { Button, InputGroup, FormControl } from "react-bootstrap";
 import { BsSearch } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
@@ -23,9 +24,11 @@ export default function NavBar() {
               </InputGroup>
             </li>
           </ul>
-          <Button variant="outline-light" className="ml-4" size="lg">
-            Blog
-          </Button>
+          <Link to="blog">
+            <Button variant="outline-light" className="ml-4" size="lg">
+              Blog
+            </Button>
+          </Link>
         </div>
       </div>
     </nav>
