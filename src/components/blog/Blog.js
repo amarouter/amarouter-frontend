@@ -8,6 +8,7 @@ import {
   ListGroup,
   Figure,
 } from "react-bootstrap";
+import axios from 'axios';
 
 import BlogCard from "./BlogCard";
 import "./Blog.css";
@@ -22,24 +23,8 @@ function Blog() {
 
   useEffect(() => {
     async function fetchPosts() {
-      const data = [
-        {
-          title: "JavaScript Yazısı",
-          alt: "JavaScript",
-          photo: BlogPhotoSample,
-        },
-        {
-          title: "JavaScript Yazısı",
-          alt: "JavaScript",
-          photo: BlogPhotoSample,
-        },
-        {
-          title: "JavaScript Yazısı",
-          alt: "JavaScript",
-          photo: BlogPhotoSample,
-        },
-      ];
-      setPosts(data);
+      const data = await axios.get('/blog/posts');
+      setPosts(data.data);
     }
     fetchPosts();
   }, []);
@@ -93,7 +78,7 @@ function Blog() {
           <Col xs="8">
             <br></br>
             {posts.map((post) => (
-              <BlogCard card={post} />
+              <BlogCard key={post._id} card={post} />
             ))}
           </Col>
         </Row>

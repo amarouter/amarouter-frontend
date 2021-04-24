@@ -14,18 +14,15 @@ class BlogCard extends Component {
                 <Figure.Image
                   width={250}
                   height={250}
-                  alt={this.props.card.alt}
-                  src={this.props.card.photo}
+                  alt={"JavaScript"}
+                  src={this.props.card.image}
                 />
               </Figure>
             </Col>
             <Col xs="8">
-              <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h4>
-              <p>
-                Lobortis mauris leo tincidunt ultricies leo.At orci at
-                pellentesque sit id arcu egestas.
-              </p>
-              <span>Jul 13, 2020 · 3 min read</span>
+              <h4>{this.props.card.title}</h4>
+              <p>{this.props.card.text}</p>
+              <span>{this.props.card.created_at} · {this.props.card.read_time} min read</span>
             </Col>
           </Row>
         </Container>
