@@ -23,7 +23,7 @@ function Blog() {
 
   useEffect(() => {
     async function fetchPosts() {
-      const data = await axios.get('/blog/posts');
+      const data = await axios.get('http://127.0.0.1:8000/blog/posts');
       setPosts(data.data);
     }
     fetchPosts();

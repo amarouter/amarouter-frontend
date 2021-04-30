@@ -1,6 +1,5 @@
 {
   "name": "amarouter-frontend",
-  "proxy": "https://amarouter.org",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
