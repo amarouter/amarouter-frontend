@@ -1,4 +1,5 @@
 .component-blog {
+  min-height: 85vh;
   background-image: linear-gradient(#0c0b0b, #060606);
   font-size: calc(10px + 2vmin);
   color: white;

@@ -12,7 +12,6 @@ import axios from 'axios';
 
 import BlogCard from "./BlogCard";
 import "./Blog.css";
-import BlogPhotoSample from "../../images/BlogPhotoSample.png";
 import Header from "../blog/Header";
 import javaScriptLogo from "../../images/JavaScriptLogo.png";
 import pythonLogo from "../../images/pythonLogo.png";
