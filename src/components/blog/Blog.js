@@ -33,7 +33,7 @@ function Blog() {
     <div className="component-blog">
       <Container>
         <Row>
-          <Header></Header>
+          <Header />
         </Row>
         <Row className="pt-5">
           <Col xs="4">
