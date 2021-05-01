@@ -9,7 +9,6 @@ const BlogPost = () => {
 
   useEffect(() => {
     async function fetchPost() {
-      // "http://127.0.0.1:8000/blog/post/javascript-giris"
       let pathname = window.location.pathname;
       pathname = pathname.split('/');
       pathname = pathname[2];
