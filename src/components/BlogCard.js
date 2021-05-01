@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import { Container, Row, Col, Figure } from "react-bootstrap";
 
-import "./Blog.css";
 class BlogCard extends Component {
   render() {
     return (

@@ -6,22 +6,26 @@ import {
   Col,
   ListGroup,
   Figure,
+  Button,
+  Navbar,
+  Nav,
 } from "react-bootstrap";
-import axios from 'axios';
+import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
-import BlogCard from "./BlogCard";
-import "./Blog.css";
-import Header from "../blog/Header";
-import javaScriptLogo from "../../images/JavaScriptLogo.png";
-import pythonLogo from "../../images/pythonLogo.png";
-import sqlLogo from "../../images/sqlLogo.png";
+import BlogCard from "../components/BlogCard";
+import Logo from "../components/Logo";
+import javaScriptLogo from "../images/JavaScriptLogo.png";
+import pythonLogo from "../images/pythonLogo.png";
+import sqlLogo from "../images/sqlLogo.png";
 
 function Blog() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     async function fetchPosts() {
-      const data = await axios.get('http://127.0.0.1:8000/blog/posts');
+      const data = await axios.get("http://127.0.0.1:8000/blog/posts");
       setPosts(data.data);
     }
     fetchPosts();
@@ -31,7 +35,21 @@ function Blog() {
     <div className="component-blog">
       <Container>
         <Row>
-          <Header />
+          <header className="App-header">
+            <Navbar bg="black" variant="black">
+              <LinkContainer to="/">
+                <Navbar.Brand>
+                  <Logo />
+                </Navbar.Brand>
+              </LinkContainer>
+              <Nav className="mr-auto"></Nav>
+              <Link to="/">
+                <Button variant="outline-light" className="ml-4" size="lg">
+                  Giriş Yap
+                </Button>
+              </Link>
+            </Navbar>
+          </header>
         </Row>
         <Row className="pt-5">
           <Col xs="4">
