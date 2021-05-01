@@ -19,9 +19,12 @@
       
 }
 
-
 .logo {
   max-width: 50%;
+}
+
+.logo p {
+  color: white !important; /* temporary solution: LinkContainer makes it blue */
 }
 
 .list-group-item {
