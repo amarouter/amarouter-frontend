@@ -221,3 +221,9 @@ figcaption {
   font-size: calc(1px + 2vmin);
   color: #426088;
 }
+
+/* BlogPost */
+
+.blog-post {
+  min-height: 85vh;
+}
