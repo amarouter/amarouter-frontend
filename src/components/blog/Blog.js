@@ -4,7 +4,6 @@ import {
   Container,
   Row,
   Col,
-  Button,
   ListGroup,
   Figure,
 } from "react-bootstrap";

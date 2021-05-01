@@ -76,3 +76,19 @@ input {
 #txtSearch {
   border: none !important;
 }
+
+footer ul.horizontal-list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+footer ul.horizontal-list li {
+  display: inline;
+}
+
+.not-found {
+  min-height: 82vh;
+  color: white;
+}

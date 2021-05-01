@@ -1,13 +1,11 @@
 import React from "react";
+import { Route, Switch } from "react-router-dom";
 
 import Main from "./components/main/Main";
 import Blog from "./components/blog/Blog";
-import Footer from "./components/footer/Footer";
-
+import Footer from "./components/Footer";
+import NotFound from "./components/NotFound";
 import "./App.css";
-import { Route, Switch } from "react-router-dom";
-import NotFound from "./components/notfound/NotFound";
-
 
 function App() {
   return (
