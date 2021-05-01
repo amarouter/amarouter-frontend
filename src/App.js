@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 import Main from "./components/main/Main";
 import Blog from "./components/blog/Blog";
+import BlogPost from "./screens/BlogPost";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import "./App.css";
@@ -13,6 +14,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Main} />
         <Route exact path="/blog" component={Blog} />
+        <Route path="/blog/:name" component={BlogPost} />
         <Route component={NotFound} />
       </Switch>
       <Footer />

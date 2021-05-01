@@ -3,7 +3,7 @@ import React from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
 
 import Logo from "../Logo";
-import Header from "../header/Header";
+import Header from "../Header";
 
 function Section1() {
   return (
