@@ -25,7 +25,7 @@ export default function Header() {
                 </InputGroup>
               </li>
             </ul>
-            <Link to="blog">
+            <Link to="/blog">
               <Button variant="outline-light" className="ml-4" size="lg">
                 Blog
               </Button>
