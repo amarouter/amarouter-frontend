@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import Main from "./components/main/Main";
+import Main from "./screens/Main";
 import Blog from "./components/blog/Blog";
 import BlogPost from "./screens/BlogPost";
 import Footer from "./components/Footer";
