@@ -10,7 +10,7 @@ import RehberlerPhoto from "../../images/RehberlerPhoto.png";
 import BlogPhoto from "../../images/BlogPhoto.png";
 import CeviriPhoto from "../../images/CeviriPhoto.png";
 
-function Section1() {
+function Section2() {
   return (
     <section className="App-section2 pt-5 pb-5">
       <br />
@@ -106,4 +106,4 @@ function Section1() {
   );
 }
 
-export default Section1;
+export default Section2;
