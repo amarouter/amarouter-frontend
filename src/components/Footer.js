@@ -1,10 +1,8 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-
 import { FaGithub, FaYoutube, FaLinkedin, FaTwitter } from "react-icons/fa";
 
-import Logo from "../Logo";
-import './Footer.css';
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
