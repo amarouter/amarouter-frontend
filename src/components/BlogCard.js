@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import { Container, Row, Col, Figure } from "react-bootstrap";
-
+import { Container, Row, Col, Figure, Card } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 class BlogCard extends Component {
   render() {
     return (
@@ -13,15 +13,24 @@ class BlogCard extends Component {
                 <Figure.Image
                   width={250}
                   height={250}
-                  alt={"JavaScript"}
+                  alt={this.props.card.slug}
                   src={this.props.card.image}
                 />
               </Figure>
             </Col>
             <Col xs="8">
-              <h4>{this.props.card.title}</h4>
-              <p>{this.props.card.text}</p>
-              <span>{this.props.card.created_at} · {this.props.card.read_time} min read</span>
+              <Card bg="dark" className="rounded">
+                <LinkContainer to={`/blog/${this.props.card.slug}`}>
+                  <Card.Header className="cursor-pointer">{this.props.card.title}</Card.Header>
+                </LinkContainer>
+                <Card.Body>
+                  <Card.Text as="div">{this.props.card.text}</Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  {this.props.card.created_at} · {this.props.card.read_time} min
+                  read
+                </Card.Footer>
+              </Card>
             </Col>
           </Row>
         </Container>
