@@ -43,6 +43,10 @@ input {
   border-bottom-color: gray;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .navbar {
   background-color: #00000000;
 }
@@ -187,6 +191,11 @@ figcaption {
   border: 1px solid white;
   color: white;
   border-radius: 100px;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .component-blog .Categories {
@@ -198,29 +207,23 @@ figcaption {
   max-width: 50%;
 }
 
-.component-blog .logo p {
-  color: white !important; /* temporary solution: LinkContainer makes it blue */
-}
-
-.component-blog .list-group-item {
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.blog-card h4 {
+.blog-card .card-header {
   font-size: calc(5px + 2vmin);
   color: #006395;
 }
 
-.blog-card p {
+.blog-card .card-body {
   font-size: calc(4px + 2vmin);
   color: white;
 }
 
-.blog-card span {
+.blog-card .card-footer {
   font-size: calc(1px + 2vmin);
-  color: #1F3C65;
+  color: #426088;
+}
+
+/* BlogPost */
+
+.blog-post {
+  min-height: 85vh;
 }
