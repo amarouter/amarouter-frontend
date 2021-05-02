@@ -4,16 +4,13 @@ import axios from "axios";
 
 import Header from "../components/Header";
 
-const BlogPost = () => {
+const BlogPost = ({ match }) => {
   const [post, setPost] = useState({});
 
   useEffect(() => {
     async function fetchPost() {
-      let pathname = window.location.pathname;
-      pathname = pathname.split('/');
-      pathname = pathname[2];
-      const data = await axios.get(`http://127.0.0.1:8000/blog/post/${pathname}`);
-      setPost(data.data);
+      const { data } = await axios.get(`http://127.0.0.1:8000/blog/post/${match.params.slug}`);
+      setPost(data);
     }
     fetchPost();
   }, {})
