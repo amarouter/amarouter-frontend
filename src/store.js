@@ -4,7 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { blogListReducers } from "./reducers/blogReducers";
 
 const reducer = combineReducers({
-  blogList: blogListReducers,
+  blogPostList: blogListReducers,
 });
 
 const initialState = {};
