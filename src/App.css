@@ -227,3 +227,12 @@ figcaption {
 .blog-post {
   min-height: 85vh;
 }
+
+/* */
+
+.spinner-border {
+  height: 8rem;
+  width: 8rem;
+  margin: auto;
+  display: block;
+}

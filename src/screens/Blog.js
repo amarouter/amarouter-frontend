@@ -16,7 +16,10 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 
 import BlogCard from "../components/BlogCard";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 import Logo from "../components/Logo";
+
 import javaScriptLogo from "../images/JavaScriptLogo.png";
 import pythonLogo from "../images/pythonLogo.png";
 import sqlLogo from "../images/sqlLogo.png";
@@ -93,9 +96,9 @@ function Blog() {
           <Col xs="8">
             <br></br>
             {loading ? (
-              <h2>Loading...</h2>
+              <Loader />
             ) : error ? (
-              <h3>{error}</h3>
+              <Message variant="danger">{error}</Message>
             ) : (
               blogPosts.map((post) => <BlogCard key={post._id} card={post} />)
             )}
