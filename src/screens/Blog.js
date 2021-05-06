@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { listBlogPosts } from "../actions/blogActions";
 
 import {
   Container,
@@ -12,24 +14,24 @@ import {
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 import BlogCard from "../components/BlogCard";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 import Logo from "../components/Logo";
+
 import javaScriptLogo from "../images/JavaScriptLogo.png";
 import pythonLogo from "../images/pythonLogo.png";
 import sqlLogo from "../images/sqlLogo.png";
 
 function Blog() {
-  const [posts, setPosts] = useState([]);
+  const dispatch = useDispatch();
+  const blogPostList = useSelector((state) => state.blogPostList);
+  const { error, loading, blogPosts } = blogPostList;
 
   useEffect(() => {
-    async function fetchPosts() {
-      const { data } = await axios.get("http://127.0.0.1:8000/blog/posts");
-      setPosts(data);
-    }
-    fetchPosts();
-  }, []);
+    dispatch(listBlogPosts());
+  }, [dispatch]);
 
   return (
     <div className="component-blog">
@@ -93,9 +95,13 @@ function Blog() {
 
           <Col xs="8">
             <br></br>
-            {posts.map((post) => (
-              <BlogCard key={post._id} card={post} />
-            ))}
+            {loading ? (
+              <Loader />
+            ) : error ? (
+              <Message variant="danger">{error}</Message>
+            ) : (
+              blogPosts.map((post) => <BlogCard key={post._id} card={post} />)
+            )}
           </Col>
         </Row>
       </Container>
