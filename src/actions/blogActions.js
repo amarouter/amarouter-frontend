@@ -8,11 +8,14 @@ import {
   BLOG_POST_FAIL,
 } from "../constants/blogConstants";
 
+// apiUrl
+const apiUrl = "http://127.0.0.1:8000";
+
 export const listBlogPosts = () => async (dispatch) => {
   try {
     dispatch({ type: BLOG_LIST_REQUEST });
 
-    const { data } = await axios.get("http://127.0.0.1:8000/blog/posts");
+    const { data } = await axios.get(`${apiUrl}/blog/posts`);
 
     dispatch({
       type: BLOG_LIST_SUCCESS,
@@ -32,7 +35,7 @@ export const listBlogPost = (slug) => async (dispatch) => {
   try {
     dispatch({ type: BLOG_POST_REQUEST });
 
-    const { data } = await axios.get(`http://127.0.0.1:8000/blog/post/${slug}`);
+    const { data } = await axios.get(`${apiUrl}/blog/post/${slug}`);
 
     dispatch({
       type: BLOG_POST_SUCCESS,
