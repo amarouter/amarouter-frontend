@@ -14,7 +14,7 @@ class BlogCard extends Component {
                   width={250}
                   height={250}
                   alt={this.props.card.slug}
-                  src={this.props.card.image}
+                  src={this.props.card.image_url}
                 />
               </Figure>
             </Col>
@@ -27,7 +27,7 @@ class BlogCard extends Component {
                   <Card.Text as="div">{this.props.card.text}</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                  {this.props.card.created_at} · {this.props.card.read_time} min
+                  {this.props.card.created_at.seconds} · {this.props.card.read_time} min
                   read
                 </Card.Footer>
               </Card>

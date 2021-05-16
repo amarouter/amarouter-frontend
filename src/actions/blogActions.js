@@ -1,4 +1,4 @@
-import axios from "axios";
+import { firestore } from "../firebase/firebaseConfig";
 import {
   BLOG_LIST_REQUEST,
   BLOG_LIST_SUCCESS,
@@ -12,18 +12,34 @@ export const listBlogPosts = () => async (dispatch) => {
   try {
     dispatch({ type: BLOG_LIST_REQUEST });
 
-    const { data } = await axios.get("http://127.0.0.1:8000/blog/posts");
-
-    dispatch({
-      type: BLOG_LIST_SUCCESS,
-      payload: data,
-    });
+    const docRef = firestore.collection("blog_posts");
+    docRef
+      .get()
+      .then((snapshot) => {
+        let data = [];
+        if (snapshot && !snapshot.empty) {
+          snapshot.forEach((doc) => {
+            data.push({ ...doc.data(), _id: doc.id });
+          });
+        }
+        return data;
+      })
+      .then((data) => {
+        dispatch({
+          type: BLOG_LIST_SUCCESS,
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        console.log("Got an error: ", error);
+      });
   } catch (error) {
     dispatch({
       type: BLOG_LIST_FAIL,
-      payload: error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };
@@ -31,19 +47,38 @@ export const listBlogPosts = () => async (dispatch) => {
 export const listBlogPost = (slug) => async (dispatch) => {
   try {
     dispatch({ type: BLOG_POST_REQUEST });
-
-    const { data } = await axios.get(`http://127.0.0.1:8000/blog/post/${slug}`);
-
-    dispatch({
-      type: BLOG_POST_SUCCESS,
-      payload: data,
-    });
+    const docRef = firestore.collection("blog_posts");
+    docRef
+      .where("slug", "==", slug)
+      .get()
+      .then((snapshot) => {
+        let data = [];
+        if (snapshot && !snapshot.empty) {
+          snapshot.forEach((doc) => {
+            data.push({ ...doc.data(), _id: doc.id });
+          });
+        }
+        return data;
+      })
+      .then((snapshot) => {
+        const data = snapshot[0];
+        if (data) {
+          dispatch({
+            type: BLOG_POST_SUCCESS,
+            payload: data,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log("Got an error: ", error);
+      });
   } catch (error) {
     dispatch({
       type: BLOG_POST_FAIL,
-      payload: error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };
