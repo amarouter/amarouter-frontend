@@ -5,6 +5,7 @@ import HomeScreen from "./screens/HomeScreen";
 import SignUp from "./screens/SignUp";
 import Dashboard from "./screens/Dashboard";
 import Profile from "./screens/Profile";
+import Tutorial from "./screens/Tutorial";
 import Blog from "./screens/Blog";
 import BlogPost from "./screens/BlogPost";
 import Header from "./components/Header";
@@ -22,6 +23,7 @@ function App() {
           <Route path="/signup" component={SignUp} exact />
           <Route path="/dashboard" component={Dashboard} exact />
           <Route path="/profile" component={Profile} exact />
+          <Route path="/tutorial/:slug" component={Tutorial} exact />
           <Route path="/blog" component={Blog} exact />
           <Route path="/blog/:slug" component={BlogPost} />
           <Route component={NotFound} />
