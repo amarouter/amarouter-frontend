@@ -68,3 +68,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### Firebase Ayarları
+`/firebase` dizini altındaki `firebaseConfig_sample.js`'in `firebaseConfig.js` ile değiştirilmesi gerekiyor.
+
+Ayrıca `.firebaserc` ve `firebase.json` dosyaları `.gitignore` altına alındı.

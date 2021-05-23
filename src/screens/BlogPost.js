@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { listBlogPost } from "../actions/blogActions";
-import Header from "../components/Header";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 
@@ -17,7 +16,6 @@ const BlogPost = ({ match }) => {
 
   return (
     <div className="blog-post">
-      <Header />
       {loading ? (
         <Loader />
       ) : error ? (

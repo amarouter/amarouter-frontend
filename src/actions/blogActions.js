@@ -1,4 +1,4 @@
-import { firestore } from "../firebase/firebaseConfig";
+import { db } from "../firebase/firebaseConfig";
 import {
   BLOG_LIST_REQUEST,
   BLOG_LIST_SUCCESS,
@@ -12,7 +12,7 @@ export const listBlogPosts = () => async (dispatch) => {
   try {
     dispatch({ type: BLOG_LIST_REQUEST });
 
-    const docRef = firestore.collection("blog_posts");
+    const docRef = db.collection("blog_posts");
     docRef
       .get()
       .then((snapshot) => {
@@ -47,7 +47,7 @@ export const listBlogPosts = () => async (dispatch) => {
 export const listBlogPost = (slug) => async (dispatch) => {
   try {
     dispatch({ type: BLOG_POST_REQUEST });
-    const docRef = firestore.collection("blog_posts");
+    const docRef = db.collection("blog_posts");
     docRef
       .where("slug", "==", slug)
       .get()
