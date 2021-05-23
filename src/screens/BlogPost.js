@@ -17,7 +17,6 @@ const BlogPost = ({ match }) => {
 
   return (
     <div className="blog-post">
-      <Header />
       {loading ? (
         <Loader />
       ) : error ? (

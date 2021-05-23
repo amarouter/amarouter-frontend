@@ -36,23 +36,6 @@ function Blog() {
   return (
     <div className="component-blog">
       <Container>
-        <Row>
-          <header className="App-header">
-            <Navbar bg="black" variant="black">
-              <LinkContainer to="/">
-                <Navbar.Brand>
-                  <Logo />
-                </Navbar.Brand>
-              </LinkContainer>
-              <Nav className="mr-auto"></Nav>
-              <Link to="/">
-                <Button variant="outline-light" className="ml-4" size="lg">
-                  Giriş Yap
-                </Button>
-              </Link>
-            </Navbar>
-          </header>
-        </Row>
         <Row className="pt-5">
           <Col xs="4">
             <p className="Categories">Kategoriler</p>

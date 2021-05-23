@@ -1,15 +1,44 @@
 import React from "react";
-
-import { Button, InputGroup, FormControl } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Button,
+  InputGroup,
+  FormControl,
+} from "react-bootstrap";
 import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 
-export default function Header() {
+import { signOut } from "../actions/userActions";
+import Logo from "./Logo";
+
+const Header = () => {
+  const dispatch = useDispatch();
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
+  const signoutHandler = (e) => {
+    dispatch(signOut());
+  };
+
   return (
-    <header className="App-header mt-4">
-      <nav className="navbar navbar-expand-lg">
+    <header className="App-header pt-4">
+      <Navbar expand="lg">
         <div className="container">
           <div className="collapse navbar-collapse" id="navbarsExample07">
+            {userInfo ? (
+              <LinkContainer to="/dashboard">
+                <Navbar.Brand>
+                  <Logo />
+                </Navbar.Brand>
+              </LinkContainer>
+            ) : (
+              <div>
+              </div>
+            )}
             <ul className="navbar-nav ml-auto mr-2">
               <li className="nav-item active">
                 <InputGroup>
@@ -30,9 +59,29 @@ export default function Header() {
                 Blog
               </Button>
             </Link>
+            {userInfo ? (
+              <NavDropdown title={userInfo.email} id="username">
+                <LinkContainer to="/profile">
+                  <NavDropdown.Item>Profil</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to="/">
+                  <NavDropdown.Item onClick={signoutHandler}>
+                    Çıkış Yap
+                  </NavDropdown.Item>
+                </LinkContainer>
+              </NavDropdown>
+            ) : (
+              <Link to="/">
+                <Button variant="outline-light" className="ml-4" size="lg">
+                  Giriş Yap
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
-      </nav>
+      </Navbar>
     </header>
   );
-}
+};
+
+export default Header;
