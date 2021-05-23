@@ -2,23 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listBlogPosts } from "../actions/blogActions";
 
-import {
-  Container,
-  Row,
-  Col,
-  ListGroup,
-  Figure,
-  Button,
-  Navbar,
-  Nav,
-} from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Row, Col, ListGroup, Figure } from "react-bootstrap";
 
 import BlogCard from "../components/BlogCard";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import Logo from "../components/Logo";
 
 import javaScriptLogo from "../images/JavaScriptLogo.png";
 import pythonLogo from "../images/pythonLogo.png";

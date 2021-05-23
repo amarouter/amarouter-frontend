@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Button, Form, Figure } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react-router-dom";
 
 import { signIn } from "../actions/userActions";
 import Logo from "../components/Logo";
@@ -74,13 +75,13 @@ const HomeScreen = ({ location, history }) => {
                 >
                   Giriş Yap
                 </Button>
-                <a id="aForgotPassword" href="#">
-                  Şifreni mi Unuttun?
-                </a>
+                <Link id="aForgotPassword" to="/signup">
+                  <span>Şifreni mi Unuttun?</span>
+                </Link>
               </Form>
               <br></br>
               <Row className="justify-content-md-center">
-                <LinkContainer to={"/signup"}>
+                <LinkContainer to="/signup">
                   <Button id="btnHesapOlustur" variant="secondary" size="lg">
                     Yeni Hesap Oluştur
                   </Button>

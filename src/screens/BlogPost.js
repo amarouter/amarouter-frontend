@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { listBlogPost } from "../actions/blogActions";
-import Header from "../components/Header";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 

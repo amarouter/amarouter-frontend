@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
-const Dashboard = () => {
+const Dashboard = ({ location, history }) => {
+  const redirect = location.search ? location.search.split("=")[1] : "/";
+
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
+  useEffect(() => {
+    if (!userInfo) {
+      history.push(redirect);
+    }
+  }, [userInfo, history, redirect]);
   return (
     <div>
       <h2>Dashboard</h2>
