@@ -7,10 +7,10 @@ import {
   TUTORIAL_PAGE_FAIL,
 } from "../constants/tutorialConstants";
 
-export const tutorialListReducers = (state = { tutorials: [] }, action) => {
+export const tutorialListReducers = (state = { tutorials: {} }, action) => {
   switch (action.type) {
     case TUTORIAL_LIST_REQUEST:
-      return { loading: true, tutorials: [] };
+      return { loading: true, tutorials: {} };
 
     case TUTORIAL_LIST_SUCCESS:
       return { loading: false, tutorials: action.payload };

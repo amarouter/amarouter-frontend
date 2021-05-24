@@ -25,7 +25,8 @@ export const listTutorials = (slug) => async (dispatch) => {
         }
         return data;
       })
-      .then((data) => {
+      .then((snapshot) => {
+        const data = snapshot[0];
         dispatch({
           type: TUTORIAL_LIST_SUCCESS,
           payload: data,
@@ -39,12 +40,12 @@ export const listTutorials = (slug) => async (dispatch) => {
   }
 };
 
-export const listTutorialPage = (slug) => async (dispatch) => {
+export const listTutorialPage = (params) => async (dispatch) => {
   try {
     dispatch({ type: TUTORIAL_PAGE_REQUEST });
     const docRef = db.collection("tutorials");
     docRef
-      .where("slug", "==", slug)
+      .where("slug", "==", params.slug)
       .get()
       .then((snapshot) => {
         let data = [];
@@ -57,10 +58,16 @@ export const listTutorialPage = (slug) => async (dispatch) => {
       })
       .then((snapshot) => {
         const data = snapshot[0];
-        if (data) {
+        if (data && data.hasOwnProperty("sections")) {
+          const section = data.sections.find(
+            (element) => element.slug === params.sectionSlug
+          );
+          const page = section.pages.find(
+            (element) => element.slug === params.pageSlug
+          );
           dispatch({
             type: TUTORIAL_PAGE_SUCCESS,
-            payload: data,
+            payload: page,
           });
         }
       });

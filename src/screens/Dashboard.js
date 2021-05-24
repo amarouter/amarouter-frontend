@@ -13,7 +13,7 @@ const Dashboard = ({ location, history }) => {
     }
   }, [userInfo, history, redirect]);
   return (
-    <div>
+    <div className="component-blog">
       <h2>Dashboard</h2>
       <h3>Profil</h3>
       <p>Profil Bilgileri</p>

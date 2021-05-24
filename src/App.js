@@ -23,8 +23,9 @@ function App() {
           <Route path="/signup" component={SignUp} exact />
           <Route path="/dashboard" component={Dashboard} exact />
           <Route path="/profile" component={Profile} exact />
-          <Route path="/tutorial/:slug" component={Tutorial} exact />
           <Route path="/blog" component={Blog} exact />
+          <Route path="/tutorial/:slug/:sectionSlug/:pageSlug" component={Tutorial} />
+          <Route path="/tutorial/:slug" component={Tutorial} />
           <Route path="/blog/:slug" component={BlogPost} />
           <Route component={NotFound} />
         </Switch>

@@ -22,3 +22,8 @@ p,
 article {
   color: white;
 }
+
+aside {
+  background-color: dimgray;
+  height: 100%;
+}

@@ -1,16 +1,17 @@
 .App {
   text-align: center;
-  background-color: #0F141B;
+  background-color: #0f141b;
 }
 
 input {
   height: calc(1.5em + 1.5rem + 2px) !important;
   background-color: #00000040 !important;
-  color: #DEE2E6 !important;
+  color: #dee2e6 !important;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #DEE2E6 !important;
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #dee2e6 !important;
   opacity: 0.7 !important; /* Firefox */
 }
 
@@ -20,7 +21,7 @@ input {
   min-height: 4vh;
   max-height: 12vh;
   font-size: calc(10px + 2vmin);
-  color: #DEE2E6;
+  color: #dee2e6;
 }
 
 .App-footer {
@@ -31,7 +32,7 @@ input {
   align-items: center;
   justify-content: space-around;
   font-size: calc(7px + 1vmin);
-  color: #DEE2E6;
+  color: #dee2e6;
   border-top-style: solid;
   border-top-width: thin;
   border-top-color: #303030;
@@ -53,7 +54,7 @@ input {
 
 .navbar .input-group {
   border: 1px solid white;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 }
 
 .logo {
@@ -71,11 +72,11 @@ input {
 }
 
 .btn-info {
-  color: #DEE2E6;
+  color: #dee2e6;
 }
 
 .ama-bg-primary {
-  background-color: #1E6094;
+  background-color: #1e6094;
 }
 
 #txtSearch {
@@ -143,7 +144,8 @@ figcaption {
   border-bottom-color: gray !important;
 }
 
-#formLogin ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+#formLogin ::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   font-size: 120%;
 }
 
@@ -155,7 +157,7 @@ figcaption {
 
 #aForgotPassword {
   font-size: 75%;
-  color: #1E6094;
+  color: #1e6094;
 }
 
 #btnHesapOlustur {
@@ -199,8 +201,8 @@ figcaption {
 }
 
 .component-blog .Categories {
-    position: relative;
-    right: 115px;
+  position: relative;
+  right: 115px;
 }
 
 .component-blog .logo {
