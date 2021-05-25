@@ -4,6 +4,9 @@ import {
   Navbar,
   NavDropdown,
   Button,
+  ButtonGroup,
+  Dropdown,
+  DropdownButton,
   InputGroup,
   FormControl,
 } from "react-bootstrap";
@@ -35,8 +38,7 @@ const Header = () => {
                 </Navbar.Brand>
               </LinkContainer>
             ) : (
-              <div>
-              </div>
+              <div></div>
             )}
             <ul className="navbar-nav ml-auto mr-2">
               <li className="nav-item active">
@@ -53,6 +55,20 @@ const Header = () => {
                 </InputGroup>
               </li>
             </ul>
+            <DropdownButton
+              as={ButtonGroup}
+              id="dropdown-basic-button"
+              variant="outline-light"
+              title="Rehberler"
+              className="ml-4"
+              size="lg"
+            >
+              <Dropdown.Item>
+                <Link to="/tutorial/javascript">JavaScript</Link>
+              </Dropdown.Item>
+              <Dropdown.Item><Link to="/tutorial/python">Python</Link></Dropdown.Item>
+              <Dropdown.Item><Link to="/tutorial/sql">SQL</Link></Dropdown.Item>
+            </DropdownButton>
             <Link to="/blog">
               <Button variant="outline-light" className="ml-4" size="lg">
                 Blog
