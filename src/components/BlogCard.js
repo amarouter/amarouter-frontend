@@ -24,7 +24,7 @@ class BlogCard extends Component {
                   <Card.Header className="cursor-pointer">{this.props.card.title}</Card.Header>
                 </LinkContainer>
                 <Card.Body>
-                  <Card.Text as="div">{this.props.card.text}</Card.Text>
+                  <Card.Text as="div">{this.props.card.description}</Card.Text>
                 </Card.Body>
                 <Card.Footer>
                   {this.props.card.created_at.seconds} · {this.props.card.read_time} min
