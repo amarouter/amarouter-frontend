@@ -1,4 +1,4 @@
-import { auth } from "../firebase/firebaseConfig";
+import { auth, db } from "../firebase/firebaseConfig";
 import {
   USER_SIGNIN_REQUEST,
   USER_SIGNIN_SUCCESS,
@@ -61,14 +61,34 @@ export const signOut = () => (dispatch) => {
   }
 };
 
-export const signUp = (email, password) => async (dispatch) => {
+export const signUp = (signUpInfo) => async (dispatch) => {
   try {
     dispatch({ type: USER_SIGNUP_REQUEST });
+    if (
+      !signUpInfo.email ||
+      !signUpInfo.password ||
+      !signUpInfo.name ||
+      !signUpInfo.surname ||
+      !signUpInfo.username ||
+      signUpInfo.email === "" ||
+      signUpInfo.password === "" ||
+      signUpInfo.name === "" ||
+      signUpInfo.surname === "" ||
+      signUpInfo.username === ""
+    ) {
+      dispatch({
+        type: USER_SIGNUP_FAIL,
+        payload: "Sign Up Informations are not valid!",
+      });
+      return;
+    }
 
     auth
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(signUpInfo.email, signUpInfo.password)
       .then((result) => {
         if (result && result.user) {
+          saveSignUpUserInfo(signUpInfo, result.user);
+
           dispatch({
             type: USER_SIGNUP_SUCCESS,
             payload: result.user,
@@ -103,4 +123,21 @@ export const signUp = (email, password) => async (dispatch) => {
           : error.message,
     });
   }
+};
+
+export const saveSignUpUserInfo = (signUpInfo, userInfo) => {
+  const docRef = db.collection("users");
+  docRef
+    .doc(userInfo.uid)
+    .set({
+      name: signUpInfo.name,
+      surname: signUpInfo.surname,
+      username: signUpInfo.username,
+    })
+    .then(() => {
+      console.log("Document successfully written!");
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    });
 };
