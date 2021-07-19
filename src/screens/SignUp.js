@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Alert, Spinner, Row, Form, Button } from "react-bootstrap";
+import {
+  Alert,
+  Spinner,
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { signUp } from "../actions/userActions";
 import Logo from "../components/Logo";
 
-const SignUp= ({ location, history }) => {
+const SignUp = ({ location, history }) => {
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -30,11 +41,11 @@ const SignUp= ({ location, history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(signUp(email, password));
+    dispatch(signUp({ email, password, name, surname, username }));
   };
 
   return (
-    <section>
+    <Container>
       {error && (
         <div>
           <Alert variant={"danger"}>
@@ -48,46 +59,88 @@ const SignUp= ({ location, history }) => {
         <Row className="justify-content-md-center">
           <Logo />
         </Row>
-        <Form onSubmit={submitHandler}>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>E-posta</Form.Label>
-            <Form.Control
-              required
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Form.Text className="text-muted"></Form.Text>
-          </Form.Group>
+        <Row>
+          <Col sm={6}>
+            <Form onSubmit={submitHandler}>
+              <Form.Group controlId="formBasicFullname">
+                <Row>
+                  <Col>
+                    <Form.Group controlId="formBasicName">
+                      <Form.Control
+                        required
+                        type="text"
+                        placeholder="İsim"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group controlId="formBasicSurname">
+                      <Form.Control
+                        required
+                        type="text"
+                        placeholder="Soyisim"
+                        value={surname}
+                        onChange={(e) => setSurname(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+              </Form.Group>
 
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Şifre</Form.Label>
-            <Form.Control
-              required
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Group>
+              <Form.Group controlId="formBasicUsername">
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Kullanıcı adı"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </Form.Group>
 
-          <Button
-            id="btnHesapOlustur"
-            variant="warning"
-            size="lg"
-            type="submit"
-          >
-            Kaydol
-          </Button>
-        </Form>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Control
+                  required
+                  type="email"
+                  placeholder="E-posta"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <Form.Text className="text-muted"></Form.Text>
+              </Form.Group>
 
-        <p>
-          Zaten hesabın varsa{" "}
-          <Link to="/">
-            <span>giriş yapabilirsin!</span>
-          </Link>
-        </p>
+              <Form.Group controlId="formBasicPassword">
+                <Form.Control
+                  required
+                  type="password"
+                  placeholder="Şifre"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Form.Group>
+
+              <Button
+                id="btnHesapOlustur"
+                variant="warning"
+                size="lg"
+                type="submit"
+              >
+                Kaydol
+              </Button>
+            </Form>
+
+            <p>
+              Zaten hesabın varsa{" "}
+              <Link to="/">
+                <span>giriş yapabilirsin!</span>
+              </Link>
+            </p>
+          </Col>
+          <Col sm={6} />
+        </Row>
       </div>
-    </section>
+    </Container>
   );
 };
 
