@@ -6,7 +6,7 @@
 input {
   height: calc(1.5em + 1.5rem + 2px) !important;
   background-color: #00000040 !important;
-  color: #dee2e6 !important;
+  color: #dee2e6;
 }
 
 ::placeholder {
@@ -133,36 +133,6 @@ figcaption {
   transform: translate(-50%, -50%);
   font-weight: bold;
   font-size: 1.2em;
-}
-
-#formLogin {
-  padding-left: 2em;
-  padding-right: 2em;
-  padding-bottom: 2em;
-  border-bottom-style: solid !important;
-  border-bottom-width: thin !important;
-  border-bottom-color: gray !important;
-}
-
-#formLogin ::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  font-size: 120%;
-}
-
-#btnGirisYap {
-  width: 100%;
-  font-weight: bold;
-  border: none;
-}
-
-#aForgotPassword {
-  font-size: 75%;
-  color: #1e6094;
-}
-
-#btnHesapOlustur {
-  width: 75%;
-  font-weight: bold;
 }
 
 #rowLogo {
