@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Row, Col, Button, Form, Figure } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import { Link } from "react-router-dom";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
-import { signIn } from "../actions/userActions";
+import { auth, uiConfig } from "../firebase/firebaseConfig";
 import Logo from "../components/Logo";
 
 import javaScriptLogo from "../images/JavaScriptLogo.png";
@@ -16,26 +15,32 @@ import BlogPhoto from "../images/BlogPhoto.png";
 import CeviriPhoto from "../images/CeviriPhoto.png";
 
 const HomeScreen = ({ location, history }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const redirect = location.search
     ? location.search.split("=")[1]
     : "/dashboard";
 
-  const dispatch = useDispatch();
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+
+  // "Sign in with Google" yazisi yerine "Continue with Google" yazisi gelmesi icin.
+
+  useEffect(() => {
+    setTimeout(() => {
+      let signInText = document.getElementsByClassName("firebaseui-idp-text");
+
+      for (let index = 0; index < signInText.length; index++) {
+        const element = signInText[index];
+
+        element.innerHTML = element.innerHTML.replace("Sign in", "Continue");
+      }
+    }, 200);
+  }, []);
 
   useEffect(() => {
     if (userInfo) {
       history.push(redirect);
     }
   }, [userInfo, history, redirect]);
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(signIn(email, password));
-  };
 
   return (
     <div className="main">
@@ -47,45 +52,8 @@ const HomeScreen = ({ location, history }) => {
               <Row className="justify-content-md-center mb-5">
                 <Logo />
               </Row>
-              <Form id="formLogin" onSubmit={submitHandler}>
-                <Form.Group controlId="formBasicEmail" className="mb-3">
-                  <Form.Control
-                    required
-                    type="email"
-                    placeholder="E-posta veya Kullanıcı Adı"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </Form.Group>
-                <Form.Group controlId="formBasicPassword">
-                  <Form.Control
-                    required
-                    type="password"
-                    placeholder="Şifre"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </Form.Group>
-                <Button
-                  id="btnGirisYap"
-                  variant="primary"
-                  className="ama-bg-primary mt-4 mb-3"
-                  type="submit"
-                  size="lg"
-                >
-                  Giriş Yap
-                </Button>
-                <Link id="aForgotPassword" to="/signup">
-                  <span>Şifreni mi Unuttun?</span>
-                </Link>
-              </Form>
-              <br></br>
               <Row className="justify-content-md-center">
-                <LinkContainer to="/signup">
-                  <Button id="btnHesapOlustur" variant="secondary" size="lg">
-                    Yeni Hesap Oluştur
-                  </Button>
-                </LinkContainer>
+                <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
               </Row>
             </Col>
             <Col sm={7}></Col>
