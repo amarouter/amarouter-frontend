@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Row, Col, Button, Form, Figure } from "react-bootstrap";
+import { Row, Col, Figure } from "react-bootstrap";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 import { auth, uiConfig } from "../firebase/firebaseConfig";
