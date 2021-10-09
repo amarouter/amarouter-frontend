@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 import { listTutorials, listTutorialPage } from "../actions/tutorialActions";
 import Loader from "../components/Loader";
@@ -71,8 +72,7 @@ const Tutorial = ({ match }) => {
               ) : (
                 <article>
                   <h2>{tutorialPage.title}</h2>
-                  <h3>{tutorialPage.title}</h3>
-                  <p>{tutorialPage.text}</p>
+                  <ReactMarkdown children={tutorialPage.text} />
                 </article>
               )}
             </section>

@@ -65,6 +65,9 @@ export const listTutorialPage = (params) => async (dispatch) => {
           const page = section.pages.find(
             (element) => element.slug === params.pageSlug
           );
+          fetch(page.url)
+            .then((response) => response.text())
+            .then((data) => (page["text"] = data));
           dispatch({
             type: TUTORIAL_PAGE_SUCCESS,
             payload: page,
