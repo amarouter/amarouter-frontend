@@ -72,7 +72,6 @@ const Tutorial = ({ match }) => {
               ) : (
                 <article>
                   <h2>{tutorialPage.title}</h2>
-                  {console.log(tutorialPage.text)}
                   <ReactMarkdown children={tutorialPage.text} />
                 </article>
               )}
