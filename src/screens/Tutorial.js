@@ -44,7 +44,7 @@ const Tutorial = ({ match }) => {
               ) : (
                 tutorials.sections.map((section) => {
                   return (
-                    <ListGroup>
+                    <ListGroup key={section.slug}>
                       <ListGroup.Item>{section.title}</ListGroup.Item>
                       {section.pages.map((page) => {
                         return (
@@ -71,7 +71,6 @@ const Tutorial = ({ match }) => {
                 <Message variant="danger">{error}</Message>
               ) : (
                 <article>
-                  <h2>{tutorialPage.title}</h2>
                   <ReactMarkdown children={tutorialPage.text} />
                 </article>
               )}
