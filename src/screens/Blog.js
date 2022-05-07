@@ -9,13 +9,11 @@ import BlogCard from "../components/BlogCard";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 
-import javaScriptLogo from "../images/JavaScriptLogo.png";
-import pythonLogo from "../images/pythonLogo.png";
-import sqlLogo from "../images/sqlLogo.png";
-
 function Blog() {
   const dispatch = useDispatch();
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState();
+  const [filteredBlogPosts, setFilteredBlogPosts] = useState([]);
   const blogPostList = useSelector((state) => state.blogPostList);
   const { error, loading, blogPosts } = blogPostList;
 
@@ -39,6 +37,28 @@ function Blog() {
       });
   }, []);
 
+  useEffect(() => {
+    setFilteredBlogPosts([...blogPosts]);
+  }, [blogPosts]);
+
+  useEffect(() => {
+    setFilteredBlogPosts([...getFilteredList()]);
+  }, [selectedCategory]);
+
+  function getFilteredList() {
+    // Avoid filter when selectedCategory is null
+    if (!selectedCategory) {
+      return blogPosts;
+    }
+    return blogPosts.filter(
+      (item) => item.blogPostCategoryId === selectedCategory
+    );
+  }
+
+  function handleCategoryChange(event) {
+    setSelectedCategory(event.target.id);
+  }
+
   return (
     <div className="component-blog">
       <Container>
@@ -47,7 +67,7 @@ function Blog() {
             <p className="Categories">Kategoriler</p>
             <ListGroup>
               {categories.map((item, index) => (
-                <ListGroup.Item key={index}>
+                <ListGroup.Item key={index} onClick={handleCategoryChange}>
                   <Figure xs={4}>
                     <Figure.Image
                       width={30}
@@ -56,7 +76,7 @@ function Blog() {
                       src={item.icon_url}
                     />
                   </Figure>
-                  <span>{item.name}</span>
+                  <span id={item.id}>{item.name}</span>
                 </ListGroup.Item>
               ))}
             </ListGroup>
@@ -69,7 +89,9 @@ function Blog() {
             ) : error ? (
               <Message variant="danger">{error}</Message>
             ) : (
-              blogPosts.map((post) => <BlogCard key={post._id} card={post} />)
+              filteredBlogPosts.map((post) => (
+                <BlogCard key={post._id} card={post} />
+              ))
             )}
           </Col>
         </Row>
