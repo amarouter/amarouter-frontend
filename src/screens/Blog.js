@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listBlogPosts } from "../actions/blogActions";
+import { db } from "../firebase/firebaseConfig";
 
 import { Container, Row, Col, ListGroup, Figure } from "react-bootstrap";
 
@@ -14,12 +15,29 @@ import sqlLogo from "../images/sqlLogo.png";
 
 function Blog() {
   const dispatch = useDispatch();
+  const [categories, setCategories] = useState([]);
   const blogPostList = useSelector((state) => state.blogPostList);
   const { error, loading, blogPosts } = blogPostList;
 
   useEffect(() => {
     dispatch(listBlogPosts());
   }, [dispatch]);
+
+  useEffect(() => {
+    db.collection("blog_post_categories")
+      .get()
+      .then((querySnapshot) => {
+        let tentativeArray = [];
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          tentativeArray.push({ id: doc.id, ...doc.data() });
+        });
+        setCategories([...categories, ...tentativeArray]);
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+  }, []);
 
   return (
     <div className="component-blog">
@@ -28,39 +46,19 @@ function Blog() {
           <Col xs="4">
             <p className="Categories">Kategoriler</p>
             <ListGroup>
-              <ListGroup.Item>
-                <Figure xs={4}>
-                  <Figure.Image
-                    width={30}
-                    height={30}
-                    alt="JavaScript"
-                    src={javaScriptLogo}
-                  />
-                </Figure>
-                <span>JavaScript</span>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Figure xs={4}>
-                  <Figure.Image
-                    width={30}
-                    height={30}
-                    alt="Python"
-                    src={pythonLogo}
-                  />
-                </Figure>
-                <span>Python</span>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Figure xs={4}>
-                  <Figure.Image
-                    width={30}
-                    height={30}
-                    alt="SQL"
-                    src={sqlLogo}
-                  />
-                </Figure>
-                <span>SQL</span>
-              </ListGroup.Item>
+              {categories.map((item, index) => (
+                <ListGroup.Item key={index}>
+                  <Figure xs={4}>
+                    <Figure.Image
+                      width={30}
+                      height={30}
+                      alt={item.name}
+                      src={item.icon_url}
+                    />
+                  </Figure>
+                  <span>{item.name}</span>
+                </ListGroup.Item>
+              ))}
             </ListGroup>
           </Col>
 
