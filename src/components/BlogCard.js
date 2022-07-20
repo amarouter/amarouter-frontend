@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { Container, Row, Col, Figure, Card } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+
 class BlogCard extends Component {
   render() {
     return (
@@ -14,7 +15,7 @@ class BlogCard extends Component {
                   width={250}
                   height={250}
                   alt={this.props.card.slug}
-                  src={this.props.card.image_url}
+                  src={this.props.card.imageUrl}
                 />
               </Figure>
             </Col>
@@ -27,7 +28,7 @@ class BlogCard extends Component {
                   <Card.Text as="div">{this.props.card.description}</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                  {this.props.card.created_at.seconds} · {this.props.card.read_time} min
+                  {this.props.card.createdAt.seconds} · {this.props.card.read_time} min
                   read
                 </Card.Footer>
               </Card>
