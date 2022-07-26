@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import ReactMarkdown from "react-markdown";
 
 import { listBlogPost } from "../actions/blogActions";
 import Loader from "../components/Loader";
@@ -21,10 +22,9 @@ const BlogPost = ({ match }) => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <div>
-          <h3>{blogPost.title}</h3>
-          <article>{blogPost.text}</article>
-        </div>
+        <article>
+            <ReactMarkdown children={blogPost.text} />
+        </article>
       )}
     </div>
   );

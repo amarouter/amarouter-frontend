@@ -62,11 +62,16 @@ export const listBlogPost = (slug) => async (dispatch) => {
       })
       .then((snapshot) => {
         const data = snapshot[0];
-        if (data) {
-          dispatch({
-            type: BLOG_POST_SUCCESS,
-            payload: data,
-          });
+        if (data && data.hasOwnProperty("textUrl")) {
+          fetch(data.textUrl)
+            .then((response) => response.text())
+            .then((blogPostText) => data["text"] = blogPostText)
+            .then(() =>
+              dispatch({
+                type: BLOG_POST_SUCCESS,
+                payload: data,
+              })
+            );
         }
       })
       .catch((error) => {
