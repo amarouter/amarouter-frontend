@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import ReactMarkdown from "react-markdown";
 
 import { listBlogPost } from "../actions/blogActions";
 import Loader from "../components/Loader";
@@ -9,10 +10,17 @@ const BlogPost = ({ match }) => {
   const dispatch = useDispatch();
   const blogPostSelector = useSelector((state) => state.blogPostDetails);
   const { loading, error, blogPost } = blogPostSelector;
+  const [ blogPostText, setBlogPostText ] = useState();
 
   useEffect(() => {
     dispatch(listBlogPost(match.params.slug));
   }, [dispatch, match]);
+
+  useEffect(() => {
+    fetch(blogPost.textUrl)
+    .then((response) => response.text())
+    .then((data) => (setBlogPostText(data)))
+  }, [blogPost.textUrl]);
 
   return (
     <div className="blog-post">
@@ -22,8 +30,7 @@ const BlogPost = ({ match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <div>
-          <h3>{blogPost.title}</h3>
-          <article>{blogPost.text}</article>
+          <ReactMarkdown children={blogPostText} />
         </div>
       )}
     </div>
