@@ -26,7 +26,7 @@ export const blogListReducers = (state = { blogPosts: [] }, action) => {
 export const blogPostReducers = (state = { blogPost: {} }, action) => {
   switch (action.type) {
     case BLOG_POST_REQUEST:
-      return { loading: true, ...state };
+      return { loading: true, blogPost: {} };
 
     case BLOG_POST_SUCCESS:
       return { loading: false, blogPost: action.payload };
