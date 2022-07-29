@@ -76,9 +76,9 @@ function Blog() {
                 name="radio"
                 size="lg"
                 checked={!selectedCategory}
-                onChange={(e) => setSelectedCategory(null)}
+                onChange={() => setSelectedCategory(null)}
               >
-                <span>All</span>
+                <span>Tüm kategoriler</span>
               </ToggleButton>
               {categories.map((item, index) => (
                 <ToggleButton
