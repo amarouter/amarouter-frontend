@@ -3,7 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { listBlogPosts } from "../actions/blogActions";
 import { db } from "../firebase/firebaseConfig";
 
-import { Container, Row, Col, ListGroup, Figure } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  ListGroup,
+  Figure,
+  ToggleButton,
+  ButtonGroup,
+} from "react-bootstrap";
 
 import BlogCard from "../components/BlogCard";
 import Loader from "../components/Loader";
@@ -12,10 +20,12 @@ import Message from "../components/Message";
 function Blog() {
   const dispatch = useDispatch();
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedCategory, setSelectedCategory] = useState("1");
   const [filteredBlogPosts, setFilteredBlogPosts] = useState([]);
   const blogPostList = useSelector((state) => state.blogPostList);
   const { error, loading, blogPosts } = blogPostList;
+
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     dispatch(listBlogPosts());
@@ -55,19 +65,25 @@ function Blog() {
     );
   }
 
-  function handleCategoryChange(event) {
-    setSelectedCategory(event.target.id);
-  }
-
   return (
     <div className="component-blog">
       <Container>
         <Row className="pt-5">
           <Col xs="4">
             <p className="Categories">Kategoriler</p>
-            <ListGroup>
+            <ButtonGroup vertical>
               {categories.map((item, index) => (
-                <ListGroup.Item key={index} onClick={handleCategoryChange}>
+                <ToggleButton
+                  key={index}
+                  id={`radio-${index}`}
+                  type='checkbox'
+                  variant="secondary"
+                  name="radio"
+                  value={item.id}
+                  size = "lg"
+                  checked={selectedCategory === item.id}
+                  onChange={(e) => setSelectedCategory(e.currentTarget.value)}
+                >
                   <Figure xs={4}>
                     <Figure.Image
                       width={30}
@@ -77,9 +93,9 @@ function Blog() {
                     />
                   </Figure>
                   <span id={item.id}>{item.name}</span>
-                </ListGroup.Item>
+                </ToggleButton>
               ))}
-            </ListGroup>
+            </ButtonGroup>
           </Col>
 
           <Col xs="8">
