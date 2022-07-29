@@ -20,12 +20,10 @@ import Message from "../components/Message";
 function Blog() {
   const dispatch = useDispatch();
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("1");
+  const [selectedCategory, setSelectedCategory] = useState();
   const [filteredBlogPosts, setFilteredBlogPosts] = useState([]);
   const blogPostList = useSelector((state) => state.blogPostList);
   const { error, loading, blogPosts } = blogPostList;
-
-  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     dispatch(listBlogPosts());
@@ -72,15 +70,25 @@ function Blog() {
           <Col xs="4">
             <p className="Categories">Kategoriler</p>
             <ButtonGroup vertical>
+              <ToggleButton
+                type="checkbox"
+                variant="secondary"
+                name="radio"
+                size="lg"
+                checked={!selectedCategory}
+                onChange={(e) => setSelectedCategory(null)}
+              >
+                <span>All</span>
+              </ToggleButton>
               {categories.map((item, index) => (
                 <ToggleButton
                   key={index}
                   id={`radio-${index}`}
-                  type='checkbox'
+                  type="checkbox"
                   variant="secondary"
                   name="radio"
                   value={item.id}
-                  size = "lg"
+                  size="lg"
                   checked={selectedCategory === item.id}
                   onChange={(e) => setSelectedCategory(e.currentTarget.value)}
                 >
