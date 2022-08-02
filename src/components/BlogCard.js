@@ -9,12 +9,12 @@ class BlogCard extends Component {
       <div className="blog-card mb-2">
         <Container>
           <Row>
-            <Col xs="4">
+            <Col className="d-flex align-items-center" xs="4">
               <Figure className="mb-0">
                 <Figure.Image
                   className="mb-0"
-                  width={200}
-                  height={200}
+                  width={180}
+                  height={180}
                   alt={this.props.card.slug}
                   src={this.props.card.imageUrl}
                 />
