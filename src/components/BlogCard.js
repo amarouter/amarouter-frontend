@@ -6,14 +6,15 @@ import { LinkContainer } from "react-router-bootstrap";
 class BlogCard extends Component {
   render() {
     return (
-      <div className="blog-card">
+      <div className="blog-card mb-2">
         <Container>
           <Row>
             <Col xs="4">
-              <Figure>
+              <Figure className="mb-0">
                 <Figure.Image
-                  width={250}
-                  height={250}
+                  className="mb-0"
+                  width={200}
+                  height={200}
                   alt={this.props.card.slug}
                   src={this.props.card.imageUrl}
                 />
@@ -22,14 +23,16 @@ class BlogCard extends Component {
             <Col xs="8">
               <Card bg="dark" className="rounded">
                 <LinkContainer to={`/blog/${this.props.card.slug}`}>
-                  <Card.Header className="cursor-pointer">{this.props.card.title}</Card.Header>
+                  <Card.Header className="cursor-pointer">
+                    {this.props.card.title}
+                  </Card.Header>
                 </LinkContainer>
                 <Card.Body>
                   <Card.Text as="div">{this.props.card.description}</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                  {this.props.card.createdAt.seconds} · {this.props.card.read_time} min
-                  read
+                  {this.props.card.createdAt.seconds} ·{" "}
+                  {this.props.card.read_time} min read
                 </Card.Footer>
               </Card>
             </Col>
