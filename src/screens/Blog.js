@@ -71,7 +71,7 @@ function Blog() {
             <p className="Categories">Kategoriler</p>
             <ButtonGroup vertical>
               <ToggleButton
-                className="Togglebutton"
+                className="toggle-button"
                 type="checkbox"
                 variant="secondary"
                 name="radio"
@@ -82,7 +82,7 @@ function Blog() {
               </ToggleButton>
               {categories.map((item, index) => (
                 <ToggleButton
-                  className="Togglebutton"
+                  className="toggle-button"
                   key={index}
                   id={`radio-${index}`}
                   type="checkbox"
