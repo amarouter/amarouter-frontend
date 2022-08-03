@@ -71,36 +71,39 @@ function Blog() {
             <p className="Categories">Kategoriler</p>
             <ButtonGroup vertical>
               <ToggleButton
+                className="toggle-button"
                 type="checkbox"
                 variant="secondary"
                 name="radio"
-                size="lg"
                 checked={!selectedCategory}
                 onChange={() => setSelectedCategory(null)}
               >
-                <span>Tüm kategoriler</span>
+                <span className="ml-2">Tüm Kategoriler</span>
               </ToggleButton>
               {categories.map((item, index) => (
                 <ToggleButton
+                  className="toggle-button"
                   key={index}
                   id={`radio-${index}`}
                   type="checkbox"
                   variant="secondary"
                   name="radio"
                   value={item.id}
-                  size="lg"
                   checked={selectedCategory === item.id}
                   onChange={(e) => setSelectedCategory(e.currentTarget.value)}
                 >
                   <Figure xs={4}>
                     <Figure.Image
-                      width={30}
-                      height={30}
+                      className="mt-4 ml-2"
+                      width={25}
+                      height={25}
                       alt={item.name}
                       src={item.icon_url}
                     />
                   </Figure>
-                  <span id={item.id}>{item.name}</span>
+                  <span className="ml-1" id={item.id}>
+                    {item.name}
+                  </span>
                 </ToggleButton>
               ))}
             </ButtonGroup>

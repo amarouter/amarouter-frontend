@@ -175,6 +175,21 @@ figcaption {
   right: 115px;
 }
 
+.component-blog .toggle-button {
+  display: flex;
+  align-items: center;
+  padding-left: 25%;
+  font-size: calc(4px + 2vmin);
+  position: relative;
+  right: 7em;
+  width: 15.5em;
+  height: 3.4em;
+  border-bottom-left-radius: 12% 50% !important;
+  border-bottom-right-radius: 12% 50% !important;
+  border-top-left-radius: 12% 50% !important;
+  border-top-right-radius: 12% 50% !important;
+}
+
 .component-blog .logo {
   max-width: 50%;
 }
