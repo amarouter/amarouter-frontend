@@ -183,7 +183,7 @@ figcaption {
   display: flex;
   align-items: center;
   padding-left: 20%;
-  height: 3.4em;;
+  height: 3.4em;
   font-size: calc(4px + 2vmin);
   border-bottom-left-radius: 12% 50% !important;
   border-bottom-right-radius: 12% 50% !important;
