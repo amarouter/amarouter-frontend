@@ -67,7 +67,7 @@ function Blog() {
     <div className="component-blog">
       <Container>
         <Row className="pt-5">
-          <Col className="Categories" xs="4">
+          <Col className="categories" xs="4">
             <p className="mr-5">Kategoriler</p>
             <ButtonGroup className="button-group" vertical>
               <ToggleButton
