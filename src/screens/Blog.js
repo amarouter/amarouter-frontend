@@ -67,9 +67,9 @@ function Blog() {
     <div className="component-blog">
       <Container>
         <Row className="pt-5">
-          <Col xs="4">
-            <p className="Categories">Kategoriler</p>
-            <ButtonGroup vertical>
+          <Col className="categories" xs="4">
+            <p className="mr-5">Kategoriler</p>
+            <ButtonGroup className="button-group" vertical>
               <ToggleButton
                 className="toggle-button"
                 type="checkbox"
