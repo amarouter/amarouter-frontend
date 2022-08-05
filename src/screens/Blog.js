@@ -68,8 +68,8 @@ function Blog() {
       <Container>
         <Row className="pt-5">
           <Col className="Categories" xs="4">
+            <p className="mr-5">Kategoriler</p>
             <ButtonGroup className="button-group" vertical>
-              <p className="ml-3">Kategoriler</p>
               <ToggleButton
                 className="toggle-button"
                 type="checkbox"
