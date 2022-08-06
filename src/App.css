@@ -170,11 +170,6 @@ figcaption {
   align-items: center;
 }
 
-.component-blog .categories {
-  position: relative;
-  right: 4em;
-}
-
 .component-blog .button-group {
   width: 75%;
 }
