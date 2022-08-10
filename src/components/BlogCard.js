@@ -32,7 +32,7 @@ class BlogCard extends Component {
                 </Card.Body>
                 <Card.Footer>
                   {this.props.card.createdAt.seconds} ·{" "}
-                  {this.props.card.read_time} min read
+                  {this.props.card.readTime} min read
                 </Card.Footer>
               </Card>
             </Col>
