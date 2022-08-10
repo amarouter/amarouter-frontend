@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import { listBlogPost } from "../actions/blogActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import BlogPostDetailHeader from "../components/BlogPostDetailHeader";
 
 const BlogPost = ({ match }) => {
   const dispatch = useDispatch();
@@ -17,13 +18,18 @@ const BlogPost = ({ match }) => {
 
   return (
     <div className="blog-post">
+      <BlogPostDetailHeader
+        title={blogPost.title}
+        readTime={blogPost.readTime}
+        createdAt={blogPost.createdAt}
+      />
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
         <article>
-            <ReactMarkdown children={blogPost.text} />
+          <ReactMarkdown children={blogPost.text} />
         </article>
       )}
     </div>
