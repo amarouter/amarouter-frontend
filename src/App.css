@@ -212,6 +212,22 @@ figcaption {
   background-color: #e5e5e5;
 }
 
+.blog-post-text {
+  background-color: white;
+  border-radius: 0.2em;
+  text-align: start;
+  padding: 3%;
+  box-shadow: 0 0 0.7rem #cccccc;
+}
+
+.blog-post-text * {
+  color: #060606;
+}
+
+.blog-post-text h1 {
+  display: none;
+}
+
 /* */
 
 .spinner-border {

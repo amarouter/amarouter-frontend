@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ReactMarkdown from "react-markdown";
 
 import { listBlogPost } from "../actions/blogActions";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
 import BlogPostDetailHeader from "../components/BlogPostDetailHeader";
+import { Container, Row, Col } from "react-bootstrap";
+import BlogPostDetailArticle from "../components/BlogPostDetailArticle";
 
 const BlogPost = ({ match }) => {
   const dispatch = useDispatch();
   const blogPostSelector = useSelector((state) => state.blogPostDetails);
-  const { loading, error, blogPost } = blogPostSelector;
+  const { blogPost } = blogPostSelector;
 
   useEffect(() => {
     dispatch(listBlogPost(match.params.slug));
@@ -23,15 +22,14 @@ const BlogPost = ({ match }) => {
         readTime={blogPost.readTime}
         createdAt={blogPost.createdAt}
       />
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <Message variant="danger">{error}</Message>
-      ) : (
-        <article>
-          <ReactMarkdown children={blogPost.text} />
-        </article>
-      )}
+      <Container>
+        <Row className="mt-5">
+          <Col xs="3">{""}</Col>
+          <Col className="blog-post-text mb-3" xs="9">
+            <BlogPostDetailArticle blogPostSelector={blogPostSelector} />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
