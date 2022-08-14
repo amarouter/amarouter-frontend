@@ -26,7 +26,7 @@ const BlogPost = ({ match }) => {
         <Row className="mt-5">
           <Col xs="3">{""}</Col>
           <Col className="blog-post-text mb-3" xs="9">
-            <BlogPostDetailArticle />
+            <BlogPostDetailArticle blogPostSelector={blogPostSelector} />
           </Col>
         </Row>
       </Container>

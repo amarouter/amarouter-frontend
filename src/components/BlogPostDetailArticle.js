@@ -5,8 +5,7 @@ import ReactMarkdown from "react-markdown";
 import Loader from "./Loader";
 import Message from "./Message";
 
-const BlogPostDetailArticle = () => {
-  const blogPostSelector = useSelector((state) => state.blogPostDetails);
+const BlogPostDetailArticle = ({blogPostSelector}) => {
   const { loading, error, blogPost } = blogPostSelector;
 
   return (
