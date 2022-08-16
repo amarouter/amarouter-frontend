@@ -232,6 +232,11 @@ figcaption {
   display: none;
 }
 
+.blog-post-text h2 {
+  padding-top: 2%;
+  border-top: 0.02em solid #00000070;
+}
+
 /* */
 
 .spinner-border {
