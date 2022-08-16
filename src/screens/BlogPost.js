@@ -5,6 +5,7 @@ import { listBlogPost } from "../actions/blogActions";
 import BlogPostDetailHeader from "../components/BlogPostDetailHeader";
 import { Container, Row, Col } from "react-bootstrap";
 import BlogPostDetailArticle from "../components/BlogPostDetailArticle";
+import BlogPostDetailAside from "../components/BlogPostDetailAside";
 
 const BlogPost = ({ match }) => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const BlogPost = ({ match }) => {
       />
       <Container>
         <Row className="mt-5">
-          <Col xs="3">{""}</Col>
+          <Col xs="3"><BlogPostDetailAside /></Col>
           <Col className="blog-post-text mb-3" xs="9">
             <BlogPostDetailArticle blogPostSelector={blogPostSelector} />
           </Col>
