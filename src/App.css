@@ -212,6 +212,10 @@ figcaption {
   background-color: #e5e5e5;
 }
 
+.blog-post .container {
+  margin-top: 3%;
+}
+
 .blog-post-text {
   background-color: white;
   border-radius: 0.2em;
@@ -270,4 +274,12 @@ figcaption {
   display: flex;
   margin-top: 5%;
   justify-content: space-between;
+}
+
+/* Markdown-Navbar */
+
+.mark-down-navbar {
+  position: sticky;
+  top: 0%;
+  text-align: start;
 }
