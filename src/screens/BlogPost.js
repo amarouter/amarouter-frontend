@@ -25,9 +25,9 @@ const BlogPost = ({ match }) => {
         createdAt={blogPost.createdAt}
       />
       <Container>
-        <Row className="mt-5">
-          <Col className="blog-post-aside" xs="3"><BlogPostDetailAside blogPostSelector={blogPostSelector} /></Col>
-          <Col className="blog-post-text mb-3" xs="9">
+        <Row>
+          <Col className="d-none d-sm-block blog-post-aside" sm="3"><BlogPostDetailAside blogPostSelector={blogPostSelector} /></Col>
+          <Col className="blog-post-text mb-3" sm="9">
             <BlogPostDetailArticle blogPostSelector={blogPostSelector} />
           </Col>
         </Row>

@@ -212,6 +212,9 @@ figcaption {
   background-color: #e5e5e5;
 }
 
+.blog-post .container {
+  margin-top: 3%;
+}
 
 .blog-post-text {
   background-color: white;
