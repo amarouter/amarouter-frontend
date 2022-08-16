@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import ReactMarkdown from "react-markdown";
 
 import Loader from "./Loader";
