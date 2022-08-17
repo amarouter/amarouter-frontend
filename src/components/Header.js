@@ -21,6 +21,20 @@ const Header = () => {
   const dispatch = useDispatch();
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+  const tutorialList = [
+    {
+      name: "JavaScript",
+      slug: "javascript"
+    },
+    {
+      name: "Python",
+      slug: "python"
+    },
+    {
+      name: "SQL",
+      slug: "sql"
+    },
+  ]
 
   const signoutHandler = (e) => {
     dispatch(signOut());
@@ -63,11 +77,10 @@ const Header = () => {
               className="ml-4"
               size="lg"
             >
-              <Dropdown.Item>
-                <Link to="/tutorial/javascript">JavaScript</Link>
-              </Dropdown.Item>
-              <Dropdown.Item><Link to="/tutorial/python">Python</Link></Dropdown.Item>
-              <Dropdown.Item><Link to="/tutorial/sql">SQL</Link></Dropdown.Item>
+              {tutorialList.map((item, index) => (
+                <Dropdown.Item key={index}>
+                  <Link to={`/tutorial/${item.slug}`}>{item.name}</Link>
+                </Dropdown.Item>))}
             </DropdownButton>
             <Link to="/blog">
               <Button variant="outline-light" className="ml-4" size="lg">
