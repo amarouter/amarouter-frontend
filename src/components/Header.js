@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Navbar,
@@ -21,20 +21,24 @@ const Header = () => {
   const dispatch = useDispatch();
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
-  const tutorialList = [
-    {
-      name: "JavaScript",
-      slug: "javascript"
-    },
-    {
-      name: "Python",
-      slug: "python"
-    },
-    {
-      name: "SQL",
-      slug: "sql"
-    },
-  ]
+  const [ tutorials, setTutorials ] = useState([]);
+
+  useEffect(() => {
+    setTutorials([
+      {
+        title: "JavaScript",
+        slug: "javascript"
+      },
+      {
+        title: "Python",
+        slug: "python"
+      },
+      {
+        title: "SQL",
+        slug: "sql"
+      },
+    ])
+  }, [tutorials])
 
   const signoutHandler = (e) => {
     dispatch(signOut());
@@ -77,9 +81,9 @@ const Header = () => {
               className="ml-4"
               size="lg"
             >
-              {tutorialList.map((item, index) => (
+              {tutorials.map((item, index) => (
                 <Dropdown.Item key={index}>
-                  <Link to={`/tutorial/${item.slug}`}>{item.name}</Link>
+                  <Link to={`/tutorial/${item.slug}`}>{item.title}</Link>
                 </Dropdown.Item>))}
             </DropdownButton>
             <Link to="/blog">
