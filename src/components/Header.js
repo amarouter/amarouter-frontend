@@ -17,28 +17,29 @@ import { LinkContainer } from "react-router-bootstrap";
 import { signOut } from "../actions/userActions";
 import Logo from "./Logo";
 
+import { db } from "../firebase/firebaseConfig";
+
 const Header = () => {
   const dispatch = useDispatch();
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
-  const [ tutorials, setTutorials ] = useState([]);
+  const [tutorials, setTutorials] = useState([]);
 
   useEffect(() => {
-    setTutorials([
-      {
-        title: "JavaScript",
-        slug: "javascript"
-      },
-      {
-        title: "Python",
-        slug: "python"
-      },
-      {
-        title: "SQL",
-        slug: "sql"
-      },
-    ])
-  }, [tutorials])
+    db.collection("tutorials")
+      .get()
+      .then((querySnapshot) => {
+        let tentativeArray = [];
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          tentativeArray.push({ id: doc.id, ...doc.data() });
+        });
+        setTutorials([...tentativeArray]);
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+  }, [])
 
   const signoutHandler = (e) => {
     dispatch(signOut());
