@@ -2,22 +2,16 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
 
 import { listTutorials, listTutorialPage } from "../actions/tutorialActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import TutorialDetailArticle from "../components/TutorialDetailArticle";
 
 const Tutorial = ({ match }) => {
   const dispatch = useDispatch();
   const tutorialListSelector = useSelector((state) => state.tutorialList);
   const { loading, error, tutorials } = tutorialListSelector;
-  const tutorialPageSelector = useSelector((state) => state.tutorialPage);
-  const {
-    loading: pageLoading,
-    error: pageError,
-    tutorialPage,
-  } = tutorialPageSelector;
 
   useEffect(() => {
     if (match.params.pageSlug) {
@@ -31,7 +25,7 @@ const Tutorial = ({ match }) => {
     <div className="component-blog">
       <Container fluid>
         <Row>
-          <Col sm={2}>
+          <Col sm={3}>
             <aside>
               <h3>Menu</h3>
 
@@ -63,18 +57,8 @@ const Tutorial = ({ match }) => {
               )}
             </aside>
           </Col>
-          <Col sm={8}>
-            <section>
-              {pageLoading ? (
-                <Loader />
-              ) : pageError ? (
-                <Message variant="danger">{error}</Message>
-              ) : (
-                <article>
-                  <ReactMarkdown children={tutorialPage.text} />
-                </article>
-              )}
-            </section>
+          <Col className="tutorial-detail-article" sm={7}>
+            <TutorialDetailArticle />
           </Col>
           <Col sm={2} />
         </Row>
