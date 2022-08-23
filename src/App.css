@@ -152,9 +152,9 @@ figcaption {
 
 .component-blog {
   min-height: 85vh;
-  background-image: linear-gradient(#0c0b0b, #060606);
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #181818;
+  font-size: calc(5px + 2vmin);
+  color: #eeeeee;
 }
 
 .component-blog .list-group-item {
@@ -168,6 +168,12 @@ figcaption {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.tutorial-detail-article {
+  text-align: start;
+  margin-left: 3%;
+  margin-top: 3%;
 }
 
 .component-blog .button-group {
