@@ -153,8 +153,7 @@ figcaption {
 .component-blog {
   min-height: 85vh;
   background-color: #181818;
-  font-size: calc(5px + 2vmin);
-  color: #eeeeee;
+  font-size: calc(6px + 2vmin);
 }
 
 .component-blog .list-group-item {
@@ -172,8 +171,19 @@ figcaption {
 
 .tutorial-detail-article {
   text-align: start;
-  margin-left: 3%;
-  margin-top: 3%;
+  margin: 3% 0 0 3%;
+}
+
+.tutorial-detail-article * {
+  color: #eeeeee;
+}
+
+.tutorial-detail-article h2,
+h3,
+h4 {
+  padding-top: 2%;
+  margin-bottom: 2%;
+  border-top: 0.02em solid #40e0d0;
 }
 
 .component-blog .button-group {
