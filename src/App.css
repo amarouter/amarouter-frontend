@@ -157,19 +157,6 @@ figcaption {
   color: white;
 }
 
-.component-blog .list-group-item {
-  margin: 0, 5px;
-  background-color: transparent;
-  border: 1px solid white;
-  color: white;
-  border-radius: 100px;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
 .component-blog .button-group {
   width: 75%;
 }
@@ -287,4 +274,38 @@ figcaption {
   position: sticky;
   top: 0%;
   text-align: start;
+}
+
+/* Tutorial */
+
+.tutorial {
+  min-height: 85vh;
+  background-color: #181818;
+  font-size: 1.1rem;
+}
+
+.tutorial .list-group-item {
+  margin: 0, 5px;
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  border-radius: 100px;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.tutorial-detail-article {
+  text-align: start;
+  margin: 3% 0 0 3%;
+}
+
+.tutorial-detail-article h2,
+h3,
+h4 {
+  padding-top: 2%;
+  margin-bottom: 2%;
+  border-top: 0.02em solid #40e0d0;
 }
