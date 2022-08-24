@@ -1,10 +1,12 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import { useSelector } from "react-redux";
 
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 
-const TutorialDetailArticle = ({ tutorialPageSelector, error }) => {
+const TutorialDetailArticle = ({ error }) => {
+  const tutorialPageSelector = useSelector((state) => state.tutorialPage);
   const {
     loading: pageLoading,
     error: pageError,
