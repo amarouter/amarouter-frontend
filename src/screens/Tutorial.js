@@ -32,7 +32,7 @@ const Tutorial = ({ match }) => {
               {loading ? (
                 <Loader />
               ) : error ? (
-                <Message variant="danger">error={error}</Message>
+                <Message variant="danger">{error}</Message>
               ) : !tutorials || !tutorials.hasOwnProperty("sections") ? (
                 <div>Internal Error</div>
               ) : (
