@@ -11,6 +11,7 @@ import TutorialDetailArticle from "../components/TutorialDetailArticle";
 const Tutorial = ({ match }) => {
   const dispatch = useDispatch();
   const tutorialListSelector = useSelector((state) => state.tutorialList);
+  const tutorialPageSelector = useSelector((state) => state.tutorialPage);
   const { loading, error, tutorials } = tutorialListSelector;
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const Tutorial = ({ match }) => {
               {loading ? (
                 <Loader />
               ) : error ? (
-                <Message variant="danger">{error}</Message>
+                <Message variant="danger">error={error}</Message>
               ) : !tutorials || !tutorials.hasOwnProperty("sections") ? (
                 <div>Internal Error</div>
               ) : (
@@ -58,7 +59,9 @@ const Tutorial = ({ match }) => {
             </aside>
           </Col>
           <Col className="tutorial-detail-article" sm={7}>
-            <TutorialDetailArticle />
+            <TutorialDetailArticle
+              tutorialPageSelector={tutorialPageSelector}
+            />
           </Col>
           <Col sm={2} />
         </Row>
