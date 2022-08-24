@@ -22,7 +22,7 @@ const Tutorial = ({ match }) => {
   }, [dispatch, match.params]);
 
   return (
-    <div className="component-blog">
+    <div className="tutorial">
       <Container fluid>
         <Row>
           <Col sm={3}>

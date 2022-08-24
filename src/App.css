@@ -152,38 +152,9 @@ figcaption {
 
 .component-blog {
   min-height: 85vh;
-  background-color: #181818;
-  font-size: calc(6px + 2vmin);
-}
-
-.component-blog .list-group-item {
-  margin: 0, 5px;
-  background-color: transparent;
-  border: 1px solid white;
+  background-image: linear-gradient(#0c0b0b, #060606);
+  font-size: calc(10px + 2vmin);
   color: white;
-  border-radius: 100px;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.tutorial-detail-article {
-  text-align: start;
-  margin: 3% 0 0 3%;
-}
-
-.tutorial-detail-article * {
-  color: #eeeeee;
-}
-
-.tutorial-detail-article h2,
-h3,
-h4 {
-  padding-top: 2%;
-  margin-bottom: 2%;
-  border-top: 0.02em solid #40e0d0;
 }
 
 .component-blog .button-group {
@@ -303,4 +274,38 @@ h4 {
   position: sticky;
   top: 0%;
   text-align: start;
+}
+
+/* Tutorial */
+
+.tutorial {
+  min-height: 85vh;
+  background-color: #181818;
+  font-size: 1.1rem;
+}
+
+.tutorial .list-group-item {
+  margin: 0, 5px;
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  border-radius: 100px;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.tutorial-detail-article {
+  text-align: start;
+  margin: 3% 0 0 3%;
+}
+
+.tutorial-detail-article h2,
+h3,
+h4 {
+  padding-top: 2%;
+  margin-bottom: 2%;
+  border-top: 0.02em solid #40e0d0;
 }
