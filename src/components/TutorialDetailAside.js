@@ -1,8 +1,56 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { ListGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const TutorialDetailAside = () => {
+import { listTutorials, listTutorialPage } from "../actions/tutorialActions";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
+
+const TutorialDetailAside = ({ match }) => {
+  const dispatch = useDispatch();
+  const tutorialListSelector = useSelector((state) => state.tutorialList);
+  const { loading, error, tutorials } = tutorialListSelector;
+
+  useEffect(() => {
+    if (match.params.pageSlug) {
+      dispatch(listTutorialPage(match.params));
+    } else {
+      dispatch(listTutorials(match.params.slug));
+    }
+  }, [dispatch, match.params]);
+
   return (
-    <div>TutorialDetailAside</div>
+    <aside>
+      <h3>Menu</h3>
+
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
+      ) : !tutorials || !tutorials.hasOwnProperty("sections") ? (
+        <div>Internal Error</div>
+      ) : (
+        tutorials.sections.map((section) => {
+          return (
+            <ListGroup key={section.slug}>
+              <ListGroup.Item>{section.title}</ListGroup.Item>
+              {section.pages.map((page) => {
+                return (
+                  <ListGroup.Item key={page.slug}>
+                    <Link
+                      to={`/tutorial/${match.params.slug}/${section.slug}/${page.slug}`}
+                    >
+                      {page.title}
+                    </Link>
+                  </ListGroup.Item>
+                );
+              })}
+            </ListGroup>
+          );
+        })
+      )}
+    </aside>
   )
 }
 
