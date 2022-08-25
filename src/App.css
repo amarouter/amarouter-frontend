@@ -287,23 +287,33 @@ figcaption {
 
 .tutorial aside {
   margin-top: 13%;
+  padding-left: 5%;
 }
 
-.tutorial h3 {
+.tutorial aside h3 {
+  text-align: start;
+  color: #40e0d0;
+  border-top: none;
+  border-bottom: 0.02em solid #40e0d0;
+}
+
+.tutorial aside a {
+  color: white;
+}
+
+.tutorial .list-group-item {
+  background-color: transparent;
+  padding: 2%;
+  border: none;
   text-align: start;
   color: #40e0d0;
 }
 
-.tutorial .list-group-item {
-  margin: 0, 5px;
-  background-color: transparent;
-  color: white;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  border: none;
+.tutorial aside li {
+  display: list-item;
+  text-align: start;
+  margin-left: 7%;
+  color: white !important;
 }
 
 .tutorial-detail-article {

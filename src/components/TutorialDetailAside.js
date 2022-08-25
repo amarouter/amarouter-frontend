@@ -33,11 +33,11 @@ const TutorialDetailAside = ({ match }) => {
       ) : (
         tutorials.sections.map((section) => {
           return (
-            <ListGroup key={section.slug}>
+            <ListGroup as="ul" key={section.slug}>
               <ListGroup.Item>{section.title}</ListGroup.Item>
               {section.pages.map((page) => {
                 return (
-                  <ListGroup.Item key={page.slug}>
+                  <ListGroup.Item as="li" key={page.slug}>
                     <Link
                       to={`/tutorial/${match.params.slug}/${section.slug}/${page.slug}`}
                     >
