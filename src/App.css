@@ -309,11 +309,28 @@ figcaption {
   color: #40e0d0;
 }
 
-.tutorial aside li {
-  display: list-item;
-  text-align: start;
-  margin-left: 7%;
-  color: white !important;
+.tutorial aside li.active {
+  border-style: solid;
+  border-color: #40e0d0;
+}
+
+.tutorial aside li::before {
+  content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  color: white;
+  font-weight: bold;
+  margin-right: 2%;
+}
+
+.tutorial aside li.active::before {
+  content: "\2022";
+  color: #40e0d0;
+  font-weight: bold;
+  margin-right: 2%;
+}
+
+.tutorial aside li :hover {
+  text-decoration: none;
+  color: #40e0d0;
 }
 
 .tutorial-detail-article {

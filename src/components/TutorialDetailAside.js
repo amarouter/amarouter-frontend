@@ -37,7 +37,16 @@ const TutorialDetailAside = ({ match }) => {
               <ListGroup.Item>{section.title}</ListGroup.Item>
               {section.pages.map((page) => {
                 return (
-                  <ListGroup.Item as="li" key={page.slug}>
+                  <ListGroup.Item
+                    as="li"
+                    key={page.slug}
+                    className={
+                      window.location.pathname ===
+                      `/tutorial/${match.params.slug}/${section.slug}/${page.slug}`
+                        ? "active"
+                        : null
+                    }
+                  >
                     <Link
                       to={`/tutorial/${match.params.slug}/${section.slug}/${page.slug}`}
                     >
@@ -51,7 +60,7 @@ const TutorialDetailAside = ({ match }) => {
         })
       )}
     </aside>
-  )
-}
+  );
+};
 
-export default TutorialDetailAside
+export default TutorialDetailAside;
