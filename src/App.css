@@ -312,8 +312,9 @@ figcaption {
 }
 
 .tutorial aside li.active {
-  border-style: solid;
-  border-color: #40e0d0;
+  border: 0.18em solid #40e0d0;
+  border-top-width: 0.18em !important;
+  border-radius: 3%;
 }
 
 .tutorial aside li::before {
