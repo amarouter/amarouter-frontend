@@ -5,7 +5,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import TutorialDetailArticle from "../components/TutorialDetailArticle";
 import TutorialDetailAside from "../components/TutorialDetailAside";
 
-
 const Tutorial = ({ match }) => {
   const tutorialListSelector = useSelector((state) => state.tutorialList);
   const { error } = tutorialListSelector;
@@ -14,10 +13,11 @@ const Tutorial = ({ match }) => {
     <div className="tutorial">
       <Container fluid>
         <Row>
-          <Col sm={3}>
+          <Col className="p-0" sm={1} />
+          <Col className="pl-0" sm={3}>
             <TutorialDetailAside match={match} />
           </Col>
-          <Col className="tutorial-detail-article" sm={7}>
+          <Col className="tutorial-detail-article" sm={6}>
             <TutorialDetailArticle error={error} />
           </Col>
           <Col sm={2} />
