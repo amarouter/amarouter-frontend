@@ -1,63 +1,23 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Container, Row, Col, ListGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useSelector } from "react-redux";
+import { Container, Row, Col } from "react-bootstrap";
 
-import { listTutorials, listTutorialPage } from "../actions/tutorialActions";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
 import TutorialDetailArticle from "../components/TutorialDetailArticle";
+import TutorialDetailAside from "../components/TutorialDetailAside";
 
 const Tutorial = ({ match }) => {
-  const dispatch = useDispatch();
   const tutorialListSelector = useSelector((state) => state.tutorialList);
-  const { loading, error, tutorials } = tutorialListSelector;
-
-  useEffect(() => {
-    if (match.params.pageSlug) {
-      dispatch(listTutorialPage(match.params));
-    } else {
-      dispatch(listTutorials(match.params.slug));
-    }
-  }, [dispatch, match.params]);
+  const { error } = tutorialListSelector;
 
   return (
     <div className="tutorial">
       <Container fluid>
         <Row>
-          <Col sm={3}>
-            <aside>
-              <h3>Menu</h3>
-
-              {loading ? (
-                <Loader />
-              ) : error ? (
-                <Message variant="danger">{error}</Message>
-              ) : !tutorials || !tutorials.hasOwnProperty("sections") ? (
-                <div>Internal Error</div>
-              ) : (
-                tutorials.sections.map((section) => {
-                  return (
-                    <ListGroup key={section.slug}>
-                      <ListGroup.Item>{section.title}</ListGroup.Item>
-                      {section.pages.map((page) => {
-                        return (
-                          <ListGroup.Item key={page.slug}>
-                            <Link
-                              to={`/tutorial/${match.params.slug}/${section.slug}/${page.slug}`}
-                            >
-                              {page.title}
-                            </Link>
-                          </ListGroup.Item>
-                        );
-                      })}
-                    </ListGroup>
-                  );
-                })
-              )}
-            </aside>
+          <Col className="p-0" sm={1} />
+          <Col className="pl-0" sm={3}>
+            <TutorialDetailAside match={match} />
           </Col>
-          <Col className="tutorial-detail-article" sm={7}>
+          <Col className="tutorial-detail-article" sm={6}>
             <TutorialDetailArticle error={error} />
           </Col>
           <Col sm={2} />

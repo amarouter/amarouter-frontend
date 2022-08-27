@@ -12,7 +12,8 @@ input {
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #dee2e6 !important;
-  opacity: 0.7 !important; /* Firefox */
+  opacity: 0.7 !important;
+  /* Firefox */
 }
 
 .App-header {
@@ -284,22 +285,62 @@ figcaption {
   font-size: 1.1rem;
 }
 
-.tutorial .list-group-item {
-  margin: 0, 5px;
-  background-color: transparent;
-  border: 1px solid white;
+.tutorial aside {
+  margin-top: 13%;
+  width: 85%;
+  padding-right: 10%;
+}
+
+.tutorial aside h3 {
+  text-align: start;
+  color: #40e0d0;
+  border-top: none;
+  border-bottom: 0.02em solid #40e0d0;
+}
+
+.tutorial aside a {
   color: white;
-  border-radius: 100px;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  opacity: 0.8;
+}
+
+.tutorial .list-group-item {
+  background-color: transparent;
+  padding: 2%;
+  border: none;
+  text-align: start;
+  color: #40e0d0;
+}
+
+.tutorial aside li.active {
+  border: 0.18em solid #40e0d0;
+  border-top-width: 0.18em !important;
+  border-radius: 3%;
+}
+
+.tutorial aside li::before {
+  content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  color: white;
+  opacity: 0.8;
+  font-weight: bold;
+  margin-right: 2%;
+}
+
+.tutorial aside li.active::before {
+  content: "\2022";
+  color: #40e0d0;
+  font-weight: bold;
+  margin-right: 2%;
+}
+
+.tutorial aside li :hover {
+  text-decoration: none;
+  color: #40e0d0;
 }
 
 .tutorial-detail-article {
   text-align: start;
-  margin: 3% 0 0 3%;
+  margin-top: 3%;
+  padding-left: 3%;
 }
 
 .tutorial-detail-article h2,
