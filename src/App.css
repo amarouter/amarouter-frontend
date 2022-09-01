@@ -225,6 +225,16 @@ figcaption {
   border-top: 0.02em solid #00000070;
 }
 
+.blog-post-text pre {
+  background-color: #1E2429;
+  padding: 2%;
+  border-radius: 0.2em;
+}
+
+.blog-post-text pre code {
+  color: white;
+}
+
 /* */
 
 .spinner-border {
@@ -318,7 +328,8 @@ figcaption {
 }
 
 .tutorial aside li::before {
-  content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  content: "\2022";
+  /* Add content: \2022 is the CSS Code/unicode for a bullet */
   color: white;
   opacity: 0.8;
   font-weight: bold;
