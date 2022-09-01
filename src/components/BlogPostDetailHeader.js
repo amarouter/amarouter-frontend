@@ -1,6 +1,9 @@
 import React from "react";
 import { Row, Col, Figure, Container } from "react-bootstrap";
 
+import { format } from "date-fns";
+import trLocale from "date-fns/locale/tr";
+
 const BlogPostDetailHeader = ({ title, readTime, createdAt }) => {
   return (
     <section className="blog-post-detail-section">
@@ -20,7 +23,13 @@ const BlogPostDetailHeader = ({ title, readTime, createdAt }) => {
             </Row>
             <Row>
               <div className="blog-post-detail-info">
-                <span>{createdAt ? createdAt.seconds : ""}</span>
+                <span>
+                  {createdAt
+                    ? format(createdAt.toDate(), "dd MMMM yyyy", {
+                        locale: trLocale,
+                      })
+                    : ""}
+                </span>
                 <span>{readTime} Min read</span>
                 <span>1.907 Views</span>
               </div>
