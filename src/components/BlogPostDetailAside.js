@@ -1,5 +1,6 @@
 import React from "react";
 import MarkdownNavbar from "markdown-navbar";
+import { XLARGE_SCREEN_WIDTH_LIMIT } from "../constants/screenConstants";
 
 const BlogPostDetailAside = ({ blogPostSelector }) => {
   const { blogPost } = blogPostSelector;
@@ -7,7 +8,7 @@ const BlogPostDetailAside = ({ blogPostSelector }) => {
     <div className="mark-down-navbar">
       <MarkdownNavbar
         source={blogPost.text}
-        headingTopOffset={window.innerWidth > 1140 ? -480 : -430}
+        headingTopOffset={XLARGE_SCREEN_WIDTH_LIMIT > 1140 ? -480 : -430}
       />
     </div>
   );
