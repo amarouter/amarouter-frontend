@@ -8,7 +8,9 @@ const BlogPostDetailAside = ({ blogPostSelector }) => {
     <div className="mark-down-navbar">
       <MarkdownNavbar
         source={blogPost.text}
-        headingTopOffset={XLARGE_SCREEN_WIDTH_LIMIT > 1140 ? -480 : -430}
+        headingTopOffset={
+          window.innerWidth > XLARGE_SCREEN_WIDTH_LIMIT ? -480 : -430
+        }
       />
     </div>
   );
