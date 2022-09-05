@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col, Figure, Container } from "react-bootstrap";
 
 import { format } from "date-fns";
 import trLocale from "date-fns/locale/tr";
 
-const BlogPostDetailHeader = ({ title, readTime, createdAt }) => {
+import { db } from "../firebase/firebaseConfig";
+
+const BlogPostDetailHeader = ({ authorId, title, readTime, createdAt }) => {
+  const [author, setAuthor] = useState({ name: "", surname: "" });
+
+  useEffect(() => {
+    const docRef = db.collection("amarouter_users").doc(authorId);
+
+    docRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setAuthor(doc.data());
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+  }, [authorId]);
+
   return (
     <section className="blog-post-detail-section">
       <Container>
@@ -13,7 +35,7 @@ const BlogPostDetailHeader = ({ title, readTime, createdAt }) => {
             <Figure>
               <Figure.Image className="blog-post-detail-figure-image" />
               <Figure.Caption className="blog-post-detail-figure-image-caption">
-                Anonymous
+                {`${author.name} ${author.surname}`}
               </Figure.Caption>
             </Figure>
           </Col>
