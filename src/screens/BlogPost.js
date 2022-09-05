@@ -20,6 +20,7 @@ const BlogPost = ({ match }) => {
   return (
     <div className="blog-post">
       <BlogPostDetailHeader
+        authorId={blogPost.authorId}
         title={blogPost.title}
         readTime={blogPost.readTime}
         createdAt={blogPost.createdAt}
