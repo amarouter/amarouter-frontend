@@ -361,3 +361,10 @@ h4 {
   margin-bottom: 2%;
   border-top: 0.02em solid #40e0d0;
 }
+
+.tutorial-detail-article pre {
+  background-color: #252525;
+  padding: 2%;
+  color: #fafafa;
+  border-radius: 0.2em;
+}
