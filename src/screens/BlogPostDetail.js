@@ -8,7 +8,7 @@ import BlogPostDetailArticle from "../components/blogs/BlogPostDetailArticle";
 import BlogPostDetailAside from "../components/blogs/BlogPostDetailAside";
 import "markdown-navbar/dist/navbar.css";
 
-const BlogPost = ({ match }) => {
+const BlogPostDetail = ({ match }) => {
   const dispatch = useDispatch();
   const blogPostSelector = useSelector((state) => state.blogPostDetails);
   const { blogPost } = blogPostSelector;
@@ -39,4 +39,4 @@ const BlogPost = ({ match }) => {
   );
 };
 
-export default BlogPost;
+export default BlogPostDetail;

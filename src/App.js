@@ -9,7 +9,7 @@ import Dashboard from "./screens/Dashboard";
 import Profile from "./screens/Profile";
 import Tutorial from "./screens/Tutorial";
 import Blog from "./screens/Blog";
-import BlogPost from "./screens/BlogPost";
+import BlogPostDetail from "./screens/BlogPostDetail";
 import Header from "./components/particles/Header";
 import Footer from "./components/particles/Footer";
 import NotFound from "./components/particles/NotFound";
@@ -25,7 +25,7 @@ function App() {
       // omitted
     }
   });
-  
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -40,7 +40,7 @@ function App() {
             component={Tutorial}
           />
           <Route path="/tutorial/:slug" component={Tutorial} />
-          <Route path="/blog/:slug" component={BlogPost} />
+          <Route path="/blog/:slug" component={BlogPostDetail} />
           <Route component={NotFound} />
         </Switch>
         <Footer />
