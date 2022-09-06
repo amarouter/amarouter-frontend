@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import { listTutorials, listTutorialPage } from "../actions/tutorialActions";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
+import { listTutorials, listTutorialPage } from "../../actions/tutorialActions";
+import Loader from "../Loader";
+import Message from "../Message";
 
 const TutorialDetailAside = ({ match }) => {
   const dispatch = useDispatch();
