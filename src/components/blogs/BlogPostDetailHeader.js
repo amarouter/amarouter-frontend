@@ -4,7 +4,7 @@ import { Row, Col, Figure, Container } from "react-bootstrap";
 import { format } from "date-fns";
 import trLocale from "date-fns/locale/tr";
 
-import { db } from "../firebase/firebaseConfig";
+import { db } from "../../firebase/firebaseConfig";
 
 const BlogPostDetailHeader = ({ authorId, title, readTime, createdAt }) => {
   const [author, setAuthor] = useState({ name: "", surname: "" });

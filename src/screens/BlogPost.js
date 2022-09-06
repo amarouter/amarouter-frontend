@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { listBlogPost } from "../actions/blogActions";
-import BlogPostDetailHeader from "../components/BlogPostDetailHeader";
+import BlogPostDetailHeader from "../components/blogs/BlogPostDetailHeader";
 import { Container, Row, Col } from "react-bootstrap";
-import BlogPostDetailArticle from "../components/BlogPostDetailArticle";
-import BlogPostDetailAside from "../components/BlogPostDetailAside";
+import BlogPostDetailArticle from "../components/blogs/BlogPostDetailArticle";
+import BlogPostDetailAside from "../components/blogs/BlogPostDetailAside";
 import "markdown-navbar/dist/navbar.css";
 
 const BlogPost = ({ match }) => {

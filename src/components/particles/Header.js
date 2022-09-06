@@ -14,10 +14,10 @@ import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 
-import { signOut } from "../actions/userActions";
+import { signOut } from "../../actions/userActions";
 import Logo from "./Logo";
 
-import { db } from "../firebase/firebaseConfig";
+import { db } from "../../firebase/firebaseConfig";
 
 const Header = () => {
   const dispatch = useDispatch();

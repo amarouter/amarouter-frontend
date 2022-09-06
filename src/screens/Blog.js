@@ -12,9 +12,9 @@ import {
   ButtonGroup,
 } from "react-bootstrap";
 
-import BlogCard from "../components/BlogCard";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
+import BlogCard from "../components/blogs/BlogCard";
+import Loader from "../components/particles/Loader";
+import Message from "../components/particles/Message";
 
 function Blog() {
   const dispatch = useDispatch();

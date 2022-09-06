@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 
-import TutorialDetailArticle from "../components/TutorialDetailArticle";
-import TutorialDetailAside from "../components/TutorialDetailAside";
+import TutorialDetailArticle from "../components/tutorials/TutorialDetailArticle";
+import TutorialDetailAside from "../components/tutorials/TutorialDetailAside"
 
 const Tutorial = ({ match }) => {
   const tutorialListSelector = useSelector((state) => state.tutorialList);

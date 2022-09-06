@@ -1,7 +1,7 @@
 import React from "react";
 import MarkdownNavbar from "markdown-navbar";
 
-import { XLARGE_SCREEN_WIDTH_LIMIT } from "../constants/screenConstants";
+import { XLARGE_SCREEN_WIDTH_LIMIT } from "../../constants/screenConstants";
 
 const BlogPostDetailAside = ({ blogPostSelector }) => {
   const { blogPost } = blogPostSelector;

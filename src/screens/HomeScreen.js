@@ -4,7 +4,7 @@ import { Row, Col, Figure } from "react-bootstrap";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 import { auth, uiConfig } from "../firebase/firebaseConfig";
-import Logo from "../components/Logo";
+import Logo from "../components/particles/Logo";
 
 import javaScriptLogo from "../images/JavaScriptLogo.png";
 import pythonLogo from "../images/pythonLogo.png";
