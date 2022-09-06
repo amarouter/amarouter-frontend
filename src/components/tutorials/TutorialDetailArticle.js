@@ -2,8 +2,8 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import { useSelector } from "react-redux";
 
-import Loader from "../Loader";
-import Message from "../Message";
+import Loader from "../particles/Loader";
+import Message from "../particles/Message";
 
 const TutorialDetailArticle = ({ error }) => {
   const tutorialPageSelector = useSelector((state) => state.tutorialPage);

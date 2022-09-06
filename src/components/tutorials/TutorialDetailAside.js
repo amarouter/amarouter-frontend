@@ -4,8 +4,8 @@ import { ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { listTutorials, listTutorialPage } from "../../actions/tutorialActions";
-import Loader from "../Loader";
-import Message from "../Message";
+import Loader from "../particles/Loader";
+import Message from "../particles/Message";
 
 const TutorialDetailAside = ({ match }) => {
   const dispatch = useDispatch();

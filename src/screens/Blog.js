@@ -13,8 +13,8 @@ import {
 } from "react-bootstrap";
 
 import BlogCard from "../components/blogs/BlogCard";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
+import Loader from "../components/particles/Loader";
+import Message from "../components/particles/Message";
 
 function Blog() {
   const dispatch = useDispatch();
