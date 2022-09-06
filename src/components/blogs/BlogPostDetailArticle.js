@@ -1,8 +1,8 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-import Loader from "./Loader";
-import Message from "./Message";
+import Loader from "../Loader";
+import Message from "../Message";
 
 const BlogPostDetailArticle = ({ blogPostSelector }) => {
   const { loading, error, blogPost } = blogPostSelector;
