@@ -13,10 +13,9 @@ const TutorialDetailAside = ({ match }) => {
   const { loading, error, tutorials } = tutorialListSelector;
 
   useEffect(() => {
+    dispatch(listTutorials(match.params.slug));
     if (match.params.pageSlug) {
       dispatch(listTutorialPage(match.params));
-    } else {
-      dispatch(listTutorials(match.params.slug));
     }
   }, [dispatch, match.params]);
 
