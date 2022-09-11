@@ -10,7 +10,6 @@ import Profile from "./screens/Profile";
 import Tutorial from "./screens/Tutorial";
 import Blog from "./screens/Blog";
 import BlogPostDetail from "./screens/BlogPostDetail";
-import Header from "./components/particles/Header";
 import Footer from "./components/particles/Footer";
 import NotFound from "./components/particles/NotFound";
 import "./App.css";
@@ -29,7 +28,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
         <Switch>
           <Route path="/" component={HomeScreen} exact />
           <Route path="/dashboard" component={Dashboard} exact />

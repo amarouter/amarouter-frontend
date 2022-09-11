@@ -13,6 +13,7 @@ input {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #dee2e6 !important;
   opacity: 0.7 !important;
+  font-size: 0.9em;
   /* Firefox */
 }
 
@@ -23,26 +24,6 @@ input {
   max-height: 12vh;
   font-size: calc(10px + 2vmin);
   color: #dee2e6;
-}
-
-.App-footer {
-  background-color: #0c010200;
-  min-height: 5vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  font-size: calc(7px + 1vmin);
-  color: #dee2e6;
-  border-top-style: solid;
-  border-top-width: thin;
-  border-top-color: #303030;
-}
-
-.App-footer h5 {
-  border-bottom-style: solid;
-  border-bottom-width: thin;
-  border-bottom-color: gray;
 }
 
 .cursor-pointer {
@@ -84,6 +65,26 @@ input {
   border: none !important;
 }
 
+.App-footer {
+  background-color: #0c010200;
+  min-height: 5vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-size: calc(7px + 1vmin);
+  color: #dee2e6;
+  border-top-style: solid;
+  border-top-width: thin;
+  border-top-color: #303030;
+}
+
+.App-footer h5 {
+  border-bottom-style: solid;
+  border-bottom-width: thin;
+  border-bottom-color: gray;
+}
+
 footer ul.horizontal-list {
   list-style: none;
   display: flex;
@@ -102,18 +103,19 @@ footer ul.horizontal-list li {
 
 /* HomeScreen */
 
+.Home-page {
+  background-image: url("./images/amacat.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 figcaption {
   width: 90%;
   color: #dee2e6 !important;
 }
 
 .App-section {
-  background-image: url("./images/amacat.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -151,9 +153,12 @@ figcaption {
 
 /* Blog */
 
+.Blog-page {
+  background-image: linear-gradient(#0c0b0b, #060606);
+}
+
 .component-blog {
   min-height: 85vh;
-  background-image: linear-gradient(#0c0b0b, #060606);
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -289,9 +294,12 @@ figcaption {
 
 /* Tutorial */
 
+.Tutorial-page {
+  background-color: #181818;
+}
+
 .tutorial {
   min-height: 85vh;
-  background-color: #181818;
   font-size: 1.1rem;
 }
 
