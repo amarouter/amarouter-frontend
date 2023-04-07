@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Navbar,
@@ -14,20 +14,39 @@ import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 
-import { signOut } from "../actions/userActions";
+import { signOut } from "../../actions/userActions";
 import Logo from "./Logo";
+
+import { db } from "../../firebase/firebaseConfig";
 
 const Header = () => {
   const dispatch = useDispatch();
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+  const [tutorials, setTutorials] = useState([]);
+
+  useEffect(() => {
+    db.collection("tutorials")
+      .get()
+      .then((querySnapshot) => {
+        let tentativeArray = [];
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          tentativeArray.push({ id: doc.id, ...doc.data() });
+        });
+        setTutorials([...tentativeArray]);
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+  }, []);
 
   const signoutHandler = (e) => {
     dispatch(signOut());
   };
 
   return (
-    <header className="App-header pt-4">
+    <header className="App-header pt-3">
       <Navbar expand="lg">
         <div className="container">
           <div className="collapse navbar-collapse" id="navbarsExample07">
@@ -63,11 +82,11 @@ const Header = () => {
               className="ml-4"
               size="lg"
             >
-              <Dropdown.Item>
-                <Link to="/tutorial/javascript">JavaScript</Link>
-              </Dropdown.Item>
-              <Dropdown.Item><Link to="/tutorial/python">Python</Link></Dropdown.Item>
-              <Dropdown.Item><Link to="/tutorial/sql">SQL</Link></Dropdown.Item>
+              {tutorials.map((item, index) => (
+                <Dropdown.Item key={index}>
+                  <Link to={`/tutorial/${item.slug}`}>{item.title}</Link>
+                </Dropdown.Item>
+              ))}
             </DropdownButton>
             <Link to="/blog">
               <Button variant="outline-light" className="ml-4" size="lg">

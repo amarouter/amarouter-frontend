@@ -9,10 +9,9 @@ import Dashboard from "./screens/Dashboard";
 import Profile from "./screens/Profile";
 import Tutorial from "./screens/Tutorial";
 import Blog from "./screens/Blog";
-import BlogPost from "./screens/BlogPost";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import NotFound from "./components/NotFound";
+import BlogPostDetail from "./screens/BlogPostDetail";
+import Footer from "./components/particles/Footer";
+import NotFound from "./components/particles/NotFound";
 import "./App.css";
 
 function App() {
@@ -25,11 +24,10 @@ function App() {
       // omitted
     }
   });
-  
+
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
         <Switch>
           <Route path="/" component={HomeScreen} exact />
           <Route path="/dashboard" component={Dashboard} exact />
@@ -40,7 +38,7 @@ function App() {
             component={Tutorial}
           />
           <Route path="/tutorial/:slug" component={Tutorial} />
-          <Route path="/blog/:slug" component={BlogPost} />
+          <Route path="/blog/:slug" component={BlogPostDetail} />
           <Route component={NotFound} />
         </Switch>
         <Footer />

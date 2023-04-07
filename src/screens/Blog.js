@@ -12,9 +12,10 @@ import {
   ButtonGroup,
 } from "react-bootstrap";
 
-import BlogCard from "../components/BlogCard";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
+import BlogCard from "../components/blogs/BlogCard";
+import Loader from "../components/particles/Loader";
+import Message from "../components/particles/Message";
+import Header from "../components/particles/Header";
 
 function Blog() {
   const dispatch = useDispatch();
@@ -63,65 +64,68 @@ function Blog() {
   }
 
   return (
-    <div className="component-blog">
-      <Container>
-        <Row className="pt-5">
-          <Col className="categories" xs="4">
-            <p className="mr-5">Kategoriler</p>
-            <ButtonGroup className="button-group" vertical>
-              <ToggleButton
-                className="toggle-button"
-                type="checkbox"
-                variant="secondary"
-                name="radio"
-                checked={!selectedCategory}
-                onChange={() => setSelectedCategory(null)}
-              >
-                <span className="ml-2">Tüm Kategoriler</span>
-              </ToggleButton>
-              {categories.map((item, index) => (
+    <div className="Blog-page">
+      <Header />
+      <div className="component-blog">
+        <Container>
+          <Row className="pt-5">
+            <Col className="categories" xs="4">
+              <p className="mr-5">Kategoriler</p>
+              <ButtonGroup className="button-group" vertical>
                 <ToggleButton
                   className="toggle-button"
-                  key={index}
-                  id={`radio-${index}`}
                   type="checkbox"
                   variant="secondary"
                   name="radio"
-                  value={item.id}
-                  checked={selectedCategory === item.id}
-                  onChange={(e) => setSelectedCategory(e.currentTarget.value)}
+                  checked={!selectedCategory}
+                  onChange={() => setSelectedCategory(null)}
                 >
-                  <Figure xs={4}>
-                    <Figure.Image
-                      className="mt-4 ml-2"
-                      width={25}
-                      height={25}
-                      alt={item.name}
-                      src={item.icon_url}
-                    />
-                  </Figure>
-                  <span className="ml-1" id={item.id}>
-                    {item.name}
-                  </span>
+                  <span className="ml-2">Tüm Kategoriler</span>
                 </ToggleButton>
-              ))}
-            </ButtonGroup>
-          </Col>
+                {categories.map((item, index) => (
+                  <ToggleButton
+                    className="toggle-button"
+                    key={index}
+                    id={`radio-${index}`}
+                    type="checkbox"
+                    variant="secondary"
+                    name="radio"
+                    value={item.id}
+                    checked={selectedCategory === item.id}
+                    onChange={(e) => setSelectedCategory(e.currentTarget.value)}
+                  >
+                    <Figure xs={4}>
+                      <Figure.Image
+                        className="mt-4 ml-2"
+                        width={25}
+                        height={25}
+                        alt={item.name}
+                        src={item.icon_url}
+                      />
+                    </Figure>
+                    <span className="ml-1" id={item.id}>
+                      {item.name}
+                    </span>
+                  </ToggleButton>
+                ))}
+              </ButtonGroup>
+            </Col>
 
-          <Col xs="8">
-            <br></br>
-            {loading ? (
-              <Loader />
-            ) : error ? (
-              <Message variant="danger">{error}</Message>
-            ) : (
-              filteredBlogPosts.map((post) => (
-                <BlogCard key={post._id} card={post} />
-              ))
-            )}
-          </Col>
-        </Row>
-      </Container>
+            <Col xs="8">
+              <br></br>
+              {loading ? (
+                <Loader />
+              ) : error ? (
+                <Message variant="danger">{error}</Message>
+              ) : (
+                filteredBlogPosts.map((post) => (
+                  <BlogCard key={post._id} card={post} />
+                ))
+              )}
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </div>
   );
 }

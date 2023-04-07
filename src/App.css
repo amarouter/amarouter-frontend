@@ -12,7 +12,9 @@ input {
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #dee2e6 !important;
-  opacity: 0.7 !important; /* Firefox */
+  opacity: 0.7 !important;
+  font-size: 0.9em;
+  /* Firefox */
 }
 
 .App-header {
@@ -22,26 +24,6 @@ input {
   max-height: 12vh;
   font-size: calc(10px + 2vmin);
   color: #dee2e6;
-}
-
-.App-footer {
-  background-color: #0c010200;
-  min-height: 5vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  font-size: calc(7px + 1vmin);
-  color: #dee2e6;
-  border-top-style: solid;
-  border-top-width: thin;
-  border-top-color: #303030;
-}
-
-.App-footer h5 {
-  border-bottom-style: solid;
-  border-bottom-width: thin;
-  border-bottom-color: gray;
 }
 
 .cursor-pointer {
@@ -83,6 +65,26 @@ input {
   border: none !important;
 }
 
+.App-footer {
+  background-color: #0c010200;
+  min-height: 5vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-size: calc(7px + 1vmin);
+  color: #dee2e6;
+  border-top-style: solid;
+  border-top-width: thin;
+  border-top-color: #303030;
+}
+
+.App-footer h5 {
+  border-bottom-style: solid;
+  border-bottom-width: thin;
+  border-bottom-color: gray;
+}
+
 footer ul.horizontal-list {
   list-style: none;
   display: flex;
@@ -101,18 +103,19 @@ footer ul.horizontal-list li {
 
 /* HomeScreen */
 
+.Home-page {
+  background-image: url("./images/amacat.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 figcaption {
   width: 90%;
   color: #dee2e6 !important;
 }
 
 .App-section {
-  background-image: url("./images/amacat.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -150,24 +153,14 @@ figcaption {
 
 /* Blog */
 
-.component-blog {
-  min-height: 85vh;
+.Blog-page {
   background-image: linear-gradient(#0c0b0b, #060606);
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.component-blog .list-group-item {
-  margin: 0, 5px;
-  background-color: transparent;
-  border: 1px solid white;
+.component-blog {
+  min-height: 85vh;
+  font-size: calc(10px + 2vmin);
   color: white;
-  border-radius: 100px;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }
 
 .component-blog .button-group {
@@ -205,7 +198,7 @@ figcaption {
   color: #426088;
 }
 
-/* BlogPost */
+/* BlogPostDetail */
 
 .blog-post {
   min-height: 85vh;
@@ -235,6 +228,16 @@ figcaption {
 .blog-post-text h2 {
   padding-top: 2%;
   border-top: 0.02em solid #00000070;
+}
+
+.blog-post-text pre {
+  background-color: #1e2429;
+  padding: 2%;
+  border-radius: 0.2em;
+}
+
+.blog-post-text pre code {
+  color: white;
 }
 
 /* */
@@ -287,4 +290,89 @@ figcaption {
   position: sticky;
   top: 0%;
   text-align: start;
+}
+
+/* Tutorial */
+
+.Tutorial-page {
+  background-color: #181818;
+}
+
+.tutorial {
+  min-height: 85vh;
+  font-size: 1.1rem;
+}
+
+.tutorial aside {
+  margin-top: 13%;
+  width: 85%;
+  padding-right: 10%;
+}
+
+.tutorial aside h3 {
+  text-align: start;
+  color: #40e0d0;
+  border-top: none;
+  border-bottom: 0.02em solid #40e0d0;
+}
+
+.tutorial aside a {
+  color: white;
+  opacity: 0.8;
+}
+
+.tutorial .list-group-item {
+  background-color: transparent;
+  padding: 2%;
+  border: none;
+  text-align: start;
+  color: #40e0d0;
+}
+
+.tutorial aside li.active {
+  border: 0.18em solid #40e0d0;
+  border-top-width: 0.18em !important;
+  border-radius: 3%;
+}
+
+.tutorial aside li::before {
+  content: "\2022";
+  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  color: white;
+  opacity: 0.8;
+  font-weight: bold;
+  margin-right: 2%;
+}
+
+.tutorial aside li.active::before {
+  content: "\2022";
+  color: #40e0d0;
+  font-weight: bold;
+  margin-right: 2%;
+}
+
+.tutorial aside li :hover {
+  text-decoration: none;
+  color: #40e0d0;
+}
+
+.tutorial-detail-article {
+  text-align: start;
+  margin-top: 3%;
+  padding-left: 3%;
+}
+
+.tutorial-detail-article h2,
+h3,
+h4 {
+  padding-top: 2%;
+  margin-bottom: 2%;
+  border-top: 0.02em solid #40e0d0;
+}
+
+.tutorial-detail-article pre {
+  background-color: #252525;
+  padding: 2%;
+  color: #fafafa;
+  border-radius: 0.2em;
 }
