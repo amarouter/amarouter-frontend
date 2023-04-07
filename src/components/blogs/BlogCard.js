@@ -1,5 +1,8 @@
 import React from "react";
 
+import { format } from "date-fns";
+import trLocale from "date-fns/locale/tr";
+
 import { Container, Row, Col, Figure, Card } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
@@ -30,7 +33,10 @@ const BlogCard = ({ card }) => {
                 <Card.Text as="div">{card.description}</Card.Text>
               </Card.Body>
               <Card.Footer>
-                {card.createdAt.seconds} · {card.readTime} min read
+                {format(card.createdAt.toDate(), "dd MMMM yyyy", {
+                  locale: trLocale,
+                })}{" "}
+                · {card.readTime} min read
               </Card.Footer>
             </Card>
           </Col>

@@ -14,10 +14,10 @@ import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 
-import { signOut } from "../actions/userActions";
+import { signOut } from "../../actions/userActions";
 import Logo from "./Logo";
 
-import { db } from "../firebase/firebaseConfig";
+import { db } from "../../firebase/firebaseConfig";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -39,14 +39,14 @@ const Header = () => {
       .catch((error) => {
         console.log("Error getting documents: ", error);
       });
-  }, [])
+  }, []);
 
   const signoutHandler = (e) => {
     dispatch(signOut());
   };
 
   return (
-    <header className="App-header pt-4">
+    <header className="App-header pt-3">
       <Navbar expand="lg">
         <div className="container">
           <div className="collapse navbar-collapse" id="navbarsExample07">
@@ -85,7 +85,8 @@ const Header = () => {
               {tutorials.map((item, index) => (
                 <Dropdown.Item key={index}>
                   <Link to={`/tutorial/${item.slug}`}>{item.title}</Link>
-                </Dropdown.Item>))}
+                </Dropdown.Item>
+              ))}
             </DropdownButton>
             <Link to="/blog">
               <Button variant="outline-light" className="ml-4" size="lg">
