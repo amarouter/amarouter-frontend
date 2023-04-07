@@ -1,32 +1,35 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
 import { userSigninReducer } from "./reducers/userReducers";
-import { tutorialListReducers, tutorialPageReducers } from "./reducers/tutorialReducers";
+import {
+  tutorialListReducers,
+  tutorialPageReducers,
+} from "./reducers/tutorialReducers";
 import { blogListReducers, blogPostReducers } from "./reducers/blogReducers";
 
-const reducer = combineReducers({
+const reducer = {
   userSignin: userSigninReducer,
   tutorialList: tutorialListReducers,
   tutorialPage: tutorialPageReducers,
   blogPostList: blogListReducers,
   blogPostDetails: blogPostReducers,
-});
+};
 
 const userInfoFromLocalStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 
-const initialState = {
+const preloadedState = {
   userSignin: { userInfo: userInfoFromLocalStorage },
 };
 
 const middleware = [thunk];
 
-const store = createStore(
+const store = configureStore({
   reducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-);
+  preloadedState,
+  middleware,
+  devTools: true,
+});
 
 export default store;
