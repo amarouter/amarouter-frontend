@@ -33,7 +33,7 @@ const BlogCard = ({ card }) => {
                 <Card.Text as="div">{card.description}</Card.Text>
               </Card.Body>
               <Card.Footer>
-                {format(card.createdAt.toDate(), "dd MMMM yyyy", {
+                {format(new Date(card.createdAt), "dd MMMM yyyy", {
                   locale: trLocale,
                 })}{" "}
                 · {card.readTime} min read
