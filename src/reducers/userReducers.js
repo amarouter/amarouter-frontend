@@ -1,25 +1,31 @@
-import {
-  USER_SIGNIN_REQUEST,
-  USER_SIGNIN_SUCCESS,
-  USER_SIGNIN_FAIL,
-  USER_SIGNOUT,
-} from "../constants/userConstants";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const userSigninReducer = (state = {}, action) => {
-  switch (action.type) {
-    case USER_SIGNIN_REQUEST:
-      return { loading: true };
-
-    case USER_SIGNIN_SUCCESS:
-      return { loading: false, userInfo: action.payload };
-
-    case USER_SIGNIN_FAIL:
-      return { loading: false, error: action.payload };
-
-    case USER_SIGNOUT:
+const userSigninSlice = createSlice({
+  name: "userSignin",
+  initialState: {},
+  reducers: {
+    userSigninRequest: (state) => {
+      state.loading = true;
+    },
+    userSigninSuccess: (state, action) => {
+      state.loading = false;
+      state.userInfo = action.payload;
+    },
+    userSigninFail: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    userSignout: (state) => {
       return {};
+    },
+  },
+});
 
-    default:
-      return state;
-  }
-};
+export const {
+  userSigninRequest,
+  userSigninSuccess,
+  userSigninFail,
+  userSignout,
+} = userSigninSlice.actions;
+
+export const userSigninReducer = userSigninSlice.reducer;
