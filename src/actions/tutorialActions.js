@@ -1,85 +1,70 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { db } from "../firebase/firebaseConfig";
 import {
-  TUTORIAL_LIST_REQUEST,
-  TUTORIAL_LIST_SUCCESS,
-  TUTORIAL_LIST_FAIL,
-  TUTORIAL_PAGE_REQUEST,
-  TUTORIAL_PAGE_SUCCESS,
-  TUTORIAL_PAGE_FAIL,
-} from "../constants/tutorialConstants";
+  tutorialListRequest,
+  tutorialListSuccess,
+  tutorialListFail,
+  tutorialPageRequest,
+  tutorialPageSuccess,
+  tutorialPageFail,
+} from "../reducers/tutorialReducers";
 
-export const listTutorials = (slug) => async (dispatch) => {
-  try {
-    dispatch({ type: TUTORIAL_LIST_REQUEST });
+export const listTutorials = createAsyncThunk(
+  "tutorialList/fetchTutorials",
+  async (slug, { dispatch }) => {
+    try {
+      dispatch(tutorialListRequest());
 
-    const docRef = db.collection("tutorials");
-    docRef
-      .where("slug", "==", slug)
-      .get()
-      .then((snapshot) => {
-        let data = [];
-        if (snapshot && !snapshot.empty) {
-          snapshot.forEach((doc) => {
-            data.push({ ...doc.data(), _id: doc.id });
-          });
-        }
-        return data;
-      })
-      .then((snapshot) => {
-        const data = snapshot[0];
-        dispatch({
-          type: TUTORIAL_LIST_SUCCESS,
-          payload: data,
+      const docRef = db.collection("tutorials");
+      const snapshot = await docRef.where("slug", "==", slug).get();
+
+      let data = [];
+      if (snapshot && !snapshot.empty) {
+        snapshot.forEach((doc) => {
+          data.push({ ...doc.data(), _id: doc.id });
         });
-      });
-  } catch (error) {
-    dispatch({
-      type: TUTORIAL_LIST_FAIL,
-      payload: error.message,
-    });
-  }
-};
+      }
 
-export const listTutorialPage = (params) => async (dispatch) => {
-  try {
-    dispatch({ type: TUTORIAL_PAGE_REQUEST });
-    const docRef = db.collection("tutorials");
-    docRef
-      .where("slug", "==", params.slug)
-      .get()
-      .then((snapshot) => {
-        let data = [];
-        if (snapshot && !snapshot.empty) {
-          snapshot.forEach((doc) => {
-            data.push({ ...doc.data(), _id: doc.id });
-          });
-        }
-        return data;
-      })
-      .then((snapshot) => {
-        const data = snapshot[0];
-        if (data && data.hasOwnProperty("sections")) {
-          const section = data.sections.find(
-            (element) => element.slug === params.sectionSlug
-          );
-          const page = section.pages.find(
-            (element) => element.slug === params.pageSlug
-          );
-          fetch(page.url)
-            .then((response) => response.text())
-            .then((data) => (page["text"] = data))
-            .then(() =>
-              dispatch({
-                type: TUTORIAL_PAGE_SUCCESS,
-                payload: page,
-              })
-            );
-        }
-      });
-  } catch (error) {
-    dispatch({
-      type: TUTORIAL_PAGE_FAIL,
-      payload: error.message,
-    });
+      dispatch(tutorialListSuccess(data[0]));
+    } catch (error) {
+      dispatch(tutorialListFail(error.message));
+    }
   }
-};
+);
+
+export const listTutorialPage = createAsyncThunk(
+  "tutorialPage/fetchTutorialPage",
+  async (params, { dispatch }) => {
+    try {
+      dispatch(tutorialPageRequest());
+
+      const docRef = db.collection("tutorials");
+      const snapshot = await docRef.where("slug", "==", params.slug).get();
+
+      let data = [];
+      if (snapshot && !snapshot.empty) {
+        snapshot.forEach((doc) => {
+          data.push({ ...doc.data(), _id: doc.id });
+        });
+      }
+
+      const tutorialData = data[0];
+      if (tutorialData && tutorialData.hasOwnProperty("sections")) {
+        const section = tutorialData.sections.find(
+          (element) => element.slug === params.sectionSlug
+        );
+        const page = section.pages.find(
+          (element) => element.slug === params.pageSlug
+        );
+
+        const response = await fetch(page.url);
+        const textData = await response.text();
+        page["text"] = textData;
+
+        dispatch(tutorialPageSuccess(page));
+      }
+    } catch (error) {
+      dispatch(tutorialPageFail(error.message));
+    }
+  }
+);
