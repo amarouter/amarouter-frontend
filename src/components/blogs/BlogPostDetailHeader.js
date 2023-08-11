@@ -47,7 +47,7 @@ const BlogPostDetailHeader = ({ authorId, title, readTime, createdAt }) => {
               <div className="blog-post-detail-info">
                 <span>
                   {createdAt
-                    ? format(createdAt.toDate(), "dd MMMM yyyy", {
+                    ? format(new Date(createdAt), "dd MMMM yyyy", {
                         locale: trLocale,
                       })
                     : ""}

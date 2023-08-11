@@ -1,89 +1,76 @@
+// asyncActions.js
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { db } from "../firebase/firebaseConfig";
 import {
-  BLOG_LIST_REQUEST,
-  BLOG_LIST_SUCCESS,
-  BLOG_LIST_FAIL,
-  BLOG_POST_REQUEST,
-  BLOG_POST_SUCCESS,
-  BLOG_POST_FAIL,
-} from "../constants/blogConstants";
+  blogListRequest,
+  blogListSuccess,
+  blogListFail,
+  blogPostRequest,
+  blogPostSuccess,
+  blogPostFail,
+} from "../reducers/blogReducers";
 
-export const listBlogPosts = () => async (dispatch) => {
-  try {
-    dispatch({ type: BLOG_LIST_REQUEST });
-
-    const docRef = db.collection("blog_posts");
-    docRef
-      .get()
-      .then((snapshot) => {
-        let data = [];
-        if (snapshot && !snapshot.empty) {
-          snapshot.forEach((doc) => {
-            data.push({ ...doc.data(), _id: doc.id });
-          });
-        }
-        return data;
-      })
-      .then((data) => {
-        dispatch({
-          type: BLOG_LIST_SUCCESS,
-          payload: data,
+export const listBlogPosts = createAsyncThunk(
+  "blogPosts/fetchAll",
+  async (_, { dispatch }) => {
+    try {
+      dispatch(blogListRequest());
+      const docRef = db.collection("blog_posts");
+      const snapshot = await docRef.get();
+      let data = [];
+      if (snapshot && !snapshot.empty) {
+        snapshot.forEach((doc) => {
+          const docData = doc.data();
+          if (docData.createdAt) {
+            docData.createdAt = docData.createdAt.toDate().toISOString();
+          }
+          data.push({ ...docData, _id: doc.id });
         });
-      })
-      .catch((error) => {
-        console.log("Got an error: ", error);
-      });
-  } catch (error) {
-    dispatch({
-      type: BLOG_LIST_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
+      }
+      dispatch(blogListSuccess(data));
+    } catch (error) {
+      dispatch(
+        blogListFail(
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+        )
+      );
+    }
   }
-};
+);
 
-export const listBlogPost = (slug) => async (dispatch) => {
-  try {
-    dispatch({ type: BLOG_POST_REQUEST });
-    const docRef = db.collection("blog_posts");
-    docRef
-      .where("slug", "==", slug)
-      .get()
-      .then((snapshot) => {
-        let data = [];
-        if (snapshot && !snapshot.empty) {
-          snapshot.forEach((doc) => {
-            data.push({ ...doc.data(), _id: doc.id });
-          });
-        }
-        return data;
-      })
-      .then((snapshot) => {
-        const data = snapshot[0];
-        if (data && data.hasOwnProperty("textUrl")) {
-          fetch(data.textUrl)
-            .then((response) => response.text())
-            .then((blogPostText) => data["text"] = blogPostText)
-            .then(() =>
-              dispatch({
-                type: BLOG_POST_SUCCESS,
-                payload: data,
-              })
-            );
-        }
-      })
-      .catch((error) => {
-        console.log("Got an error: ", error);
-      });
-  } catch (error) {
-    dispatch({
-      type: BLOG_POST_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
+export const listBlogPost = createAsyncThunk(
+  "blogPost/fetchBySlug",
+  async (slug, { dispatch }) => {
+    try {
+      dispatch(blogPostRequest());
+      const docRef = db.collection("blog_posts");
+      const snapshot = await docRef.where("slug", "==", slug).get();
+      let data = [];
+      if (snapshot && !snapshot.empty) {
+        snapshot.forEach((doc) => {
+          const docData = doc.data();
+          if (docData.createdAt) {
+            docData.createdAt = docData.createdAt.toDate().toISOString();
+          }
+          data.push({ ...docData, _id: doc.id });
+        });
+      }
+      const blogData = data[0];
+      if (blogData && blogData.hasOwnProperty("textUrl")) {
+        const response = await fetch(blogData.textUrl);
+        blogData["text"] = await response.text();
+        dispatch(blogPostSuccess(blogData));
+      }
+    } catch (error) {
+      dispatch(
+        blogPostFail(
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+        )
+      );
+    }
   }
-};
+);

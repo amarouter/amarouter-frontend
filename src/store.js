@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import thunk from "redux-thunk";
 import { userSigninReducer } from "./reducers/userReducers";
 import {
   tutorialListReducers,
@@ -23,12 +22,9 @@ const preloadedState = {
   userSignin: { userInfo: userInfoFromLocalStorage },
 };
 
-const middleware = [thunk];
-
 const store = configureStore({
   reducer,
   preloadedState,
-  middleware,
   devTools: true,
 });
 

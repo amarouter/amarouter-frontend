@@ -1,40 +1,49 @@
-import {
-  BLOG_LIST_REQUEST,
-  BLOG_LIST_SUCCESS,
-  BLOG_LIST_FAIL,
-  BLOG_POST_REQUEST,
-  BLOG_POST_SUCCESS,
-  BLOG_POST_FAIL,
-} from "../constants/blogConstants";
+// slice.js
+import { createSlice } from "@reduxjs/toolkit";
 
-export const blogListReducers = (state = { blogPosts: [] }, action) => {
-  switch (action.type) {
-    case BLOG_LIST_REQUEST:
-      return { loading: true, blogPosts: [] };
+const blogListSlice = createSlice({
+  name: "blogList",
+  initialState: { blogPosts: [] },
+  reducers: {
+    blogListRequest: (state) => {
+      state.loading = true;
+      state.blogPosts = [];
+    },
+    blogListSuccess: (state, action) => {
+      state.loading = false;
+      state.blogPosts = action.payload;
+    },
+    blogListFail: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+  },
+});
 
-    case BLOG_LIST_SUCCESS:
-      return { loading: false, blogPosts: action.payload };
+const blogPostSlice = createSlice({
+  name: "blogPost",
+  initialState: { blogPost: {} },
+  reducers: {
+    blogPostRequest: (state) => {
+      state.loading = true;
+      state.blogPost = {};
+    },
+    blogPostSuccess: (state, action) => {
+      state.loading = false;
+      state.blogPost = action.payload;
+    },
+    blogPostFail: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+  },
+});
 
-    case BLOG_LIST_FAIL:
-      return { loading: false, error: action.payload };
+export const { blogListRequest, blogListSuccess, blogListFail } =
+  blogListSlice.actions;
 
-    default:
-      return state;
-  }
-};
+export const { blogPostRequest, blogPostSuccess, blogPostFail } =
+  blogPostSlice.actions;
 
-export const blogPostReducers = (state = { blogPost: {} }, action) => {
-  switch (action.type) {
-    case BLOG_POST_REQUEST:
-      return { loading: true, blogPost: {} };
-
-    case BLOG_POST_SUCCESS:
-      return { loading: false, blogPost: action.payload };
-
-    case BLOG_POST_FAIL:
-      return { loading: false, error: action.payload };
-
-    default:
-      return state;
-  }
-};
+export const blogListReducers = blogListSlice.reducer;
+export const blogPostReducers = blogPostSlice.reducer;

@@ -1,47 +1,59 @@
 import { auth } from "../firebase/firebaseConfig";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  USER_SIGNIN_REQUEST,
-  USER_SIGNIN_SUCCESS,
-  USER_SIGNIN_FAIL,
-  USER_SIGNOUT,
-} from "../constants/userConstants";
+  userSigninRequest,
+  userSigninSuccess,
+  userSigninFail,
+  userSignout,
+} from "../reducers/userReducers";
 
-export const signIn = (user) => async (dispatch) => {
-  try {
-    dispatch({ type: USER_SIGNIN_REQUEST });
+/**
+ * For more properties, check:
+ * https://firebase.google.com/docs/auth/web/manage-users
+ * https://firebase.google.com/docs/reference/js/auth.user
+ * https://firebase.google.com/docs/reference/js/auth.userinfo
+ * @param {firebase.auth.UserCredential} user
+ * @returns object
+ **/
+const extractUserInfo = (user) => ({
+  uid: user.uid,
+  email: user.email,
+  displayName: user.displayName,
+});
 
-    if (user) {
-      dispatch({
-        type: USER_SIGNIN_SUCCESS,
-        payload: user,
-      });
-      localStorage.setItem("userInfo", JSON.stringify(user));
-    } else {
-      dispatch({
-        type: USER_SIGNIN_FAIL,
-        payload: "Hata meydana geldi.",
-      });
-    }
-  } catch (error) {
-    dispatch({
-      type: USER_SIGNIN_FAIL,
-      payload:
+export const signIn = createAsyncThunk(
+  "user/signIn",
+  async (user, { dispatch }) => {
+    try {
+      dispatch(userSigninRequest());
+
+      if (user) {
+        const userInfo = extractUserInfo(user);
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+        dispatch(userSigninSuccess(userInfo));
+      } else {
+        dispatch(userSigninFail("Hata meydana geldi."));
+      }
+    } catch (error) {
+      const errorMessage =
         error.response && error.response.data.message
           ? error.response.data.message
-          : error.message,
-    });
+          : error.message;
+      dispatch(userSigninFail(errorMessage));
+    }
   }
-};
+);
 
 export const signOut = () => (dispatch) => {
-  try {
-    auth.signOut().then(() => {
+  auth
+    .signOut()
+    .then(() => {
       localStorage.removeItem("userInfo");
-      dispatch({ type: USER_SIGNOUT });
+      dispatch(userSignout());
+    })
+    .catch((error) => {
+      console.log("firebase signOut error: ", error);
+      localStorage.removeItem("userInfo");
+      dispatch(userSignout());
     });
-  } catch (error) {
-    console.log("firebase signOut error: ", error);
-    localStorage.removeItem("userInfo");
-    dispatch({ type: USER_SIGNOUT });
-  }
 };
