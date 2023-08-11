@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { userSigninReducer } from "./reducers/userReducers";
+import { userSigninReducer } from "../reducers/userReducers";
 import {
   tutorialListReducers,
   tutorialPageReducers,
-} from "./reducers/tutorialReducers";
-import { blogListReducers, blogPostReducers } from "./reducers/blogReducers";
+} from "../reducers/tutorialReducers";
+import { blogListReducers, blogPostReducers } from "../reducers/blogReducers";
 
 const reducer = {
   userSignin: userSigninReducer,
