@@ -83,9 +83,9 @@ const Header = () => {
               size="lg"
             >
               {tutorials.map((item, index) => (
-                <Dropdown.Item key={index}>
-                  <Link to={`/tutorial/${item.slug}`}>{item.title}</Link>
-                </Dropdown.Item>
+                <LinkContainer to={`/tutorial/${item.slug}`} key={index}>
+                  <Dropdown.Item>{item.title}</Dropdown.Item>
+                </LinkContainer>
               ))}
             </DropdownButton>
             <Link to="/blog">
