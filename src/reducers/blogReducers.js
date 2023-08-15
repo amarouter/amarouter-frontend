@@ -1,21 +1,24 @@
 // slice.js
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchBlogPostList } from "../actions/blogActions";
 
 const blogListSlice = createSlice({
-  name: "blogList",
+  name: "blogPostList",
   initialState: { blogPosts: [] },
-  reducers: {
-    blogListRequest: (state) => {
+  reducers: {},
+  extraReducers: {
+    [fetchBlogPostList.pending]: (state) => {
       state.loading = true;
       state.blogPosts = [];
     },
-    blogListSuccess: (state, action) => {
+    [fetchBlogPostList.fulfilled]: (state, action) => {
       state.loading = false;
       state.blogPosts = action.payload;
+      state.error = null;
     },
-    blogListFail: (state, action) => {
+    [fetchBlogPostList.rejected]: (state, action) => {
       state.loading = false;
-      state.error = action.payload;
+      state.error = action.error.message;
     },
   },
 });

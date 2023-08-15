@@ -2,41 +2,29 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { db } from "../firebase/firebaseConfig";
 import {
-  blogListRequest,
-  blogListSuccess,
-  blogListFail,
   blogPostRequest,
   blogPostSuccess,
   blogPostFail,
 } from "../reducers/blogReducers";
 
-export const listBlogPosts = createAsyncThunk(
-  "blogPosts/fetchAll",
-  async (_, { dispatch }) => {
-    try {
-      dispatch(blogListRequest());
-      const docRef = db.collection("blog_posts");
-      const snapshot = await docRef.get();
-      let data = [];
-      if (snapshot && !snapshot.empty) {
-        snapshot.forEach((doc) => {
-          const docData = doc.data();
-          if (docData.createdAt) {
-            docData.createdAt = docData.createdAt.toDate().toISOString();
-          }
-          data.push({ ...docData, _id: doc.id });
-        });
-      }
-      dispatch(blogListSuccess(data));
-    } catch (error) {
-      dispatch(
-        blogListFail(
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message
-        )
-      );
-    }
+/**
+ * Extracts the blog post data from the firestore document
+ **/
+function extractBlogPost(doc) {
+  const data = doc.data();
+  if (data.createdAt) {
+    data.createdAt = data.createdAt.toDate().toISOString();
+  }
+  const blogPost = { ...data, _id: doc.id };
+  return blogPost;
+}
+
+export const fetchBlogPostList = createAsyncThunk(
+  "blogPost/fetchAll",
+  async () => {
+    const docRef = db.collection("blog_posts");
+    const snapshot = await docRef.get();
+    return snapshot.docs.map((doc) => extractBlogPost(doc));
   }
 );
 
@@ -49,13 +37,7 @@ export const listBlogPost = createAsyncThunk(
       const snapshot = await docRef.where("slug", "==", slug).get();
       let data = [];
       if (snapshot && !snapshot.empty) {
-        snapshot.forEach((doc) => {
-          const docData = doc.data();
-          if (docData.createdAt) {
-            docData.createdAt = docData.createdAt.toDate().toISOString();
-          }
-          data.push({ ...docData, _id: doc.id });
-        });
+        data = snapshot.docs.map((doc) => extractBlogPost(doc));
       }
       const blogData = data[0];
       if (blogData && blogData.hasOwnProperty("textUrl")) {

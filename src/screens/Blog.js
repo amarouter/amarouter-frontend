@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listBlogPosts } from "../actions/blogActions";
+import { fetchBlogPostList } from "../actions/blogActions";
 import { db } from "../firebase/firebaseConfig";
 
 import {
@@ -26,7 +26,7 @@ function Blog() {
   const { error, loading, blogPosts } = blogPostList;
 
   useEffect(() => {
-    dispatch(listBlogPosts());
+    dispatch(fetchBlogPostList());
   }, [dispatch]);
 
   useEffect(() => {
@@ -54,13 +54,12 @@ function Blog() {
 
   useEffect(() => {
     function getFilteredList() {
-    // Avoid filter when selectedCategory is null
-      if (!selectedCategory) {
-        return blogPosts;
-      }
-      return blogPosts.filter(
-        (item) => item.blogPostCategoryId === selectedCategory
-      );
+      // Avoid filter when selectedCategory is null
+      return selectedCategory
+        ? blogPosts.filter(
+            (item) => item.blogPostCategoryId === selectedCategory
+          )
+        : blogPosts;
     }
 
     setFilteredBlogPosts([...getFilteredList()]);
