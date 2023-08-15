@@ -38,7 +38,10 @@ function Blog() {
           // doc.data() is never undefined for query doc snapshots
           tentativeArray.push({ id: doc.id, ...doc.data() });
         });
-        setCategories([...categories, ...tentativeArray]);
+        setCategories((prevCategories) => [
+          ...prevCategories,
+          ...tentativeArray,
+        ]);
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
@@ -50,18 +53,18 @@ function Blog() {
   }, [blogPosts]);
 
   useEffect(() => {
-    setFilteredBlogPosts([...getFilteredList()]);
-  }, [selectedCategory]);
-
-  function getFilteredList() {
+    function getFilteredList() {
     // Avoid filter when selectedCategory is null
-    if (!selectedCategory) {
-      return blogPosts;
+      if (!selectedCategory) {
+        return blogPosts;
+      }
+      return blogPosts.filter(
+        (item) => item.blogPostCategoryId === selectedCategory
+      );
     }
-    return blogPosts.filter(
-      (item) => item.blogPostCategoryId === selectedCategory
-    );
-  }
+
+    setFilteredBlogPosts([...getFilteredList()]);
+  }, [selectedCategory, blogPosts]);
 
   return (
     <div className="Blog-page">
