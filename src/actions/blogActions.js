@@ -1,11 +1,6 @@
 // asyncActions.js
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { db } from "../firebase/firebaseConfig";
-import {
-  blogPostRequest,
-  blogPostSuccess,
-  blogPostFail,
-} from "../reducers/blogReducers";
 
 /**
  * Extracts the blog post data from the firestore document
@@ -28,31 +23,20 @@ export const fetchBlogPostList = createAsyncThunk(
   }
 );
 
-export const listBlogPost = createAsyncThunk(
+export const fetchBlogPostBySlug = createAsyncThunk(
   "blogPost/fetchBySlug",
-  async (slug, { dispatch }) => {
-    try {
-      dispatch(blogPostRequest());
-      const docRef = db.collection("blog_posts");
-      const snapshot = await docRef.where("slug", "==", slug).get();
-      let data = [];
-      if (snapshot && !snapshot.empty) {
-        data = snapshot.docs.map((doc) => extractBlogPost(doc));
-      }
-      const blogData = data[0];
-      if (blogData && blogData.hasOwnProperty("textUrl")) {
-        const response = await fetch(blogData.textUrl);
-        blogData["text"] = await response.text();
-        dispatch(blogPostSuccess(blogData));
-      }
-    } catch (error) {
-      dispatch(
-        blogPostFail(
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message
-        )
-      );
+  async (slug) => {
+    const docRef = db.collection("blog_posts");
+    const snapshot = await docRef.where("slug", "==", slug).get();
+    let data = [];
+    if (snapshot && !snapshot.empty) {
+      data = snapshot.docs.map((doc) => extractBlogPost(doc));
     }
+    const blogData = data[0];
+    if (blogData && blogData.hasOwnProperty("textUrl")) {
+      const response = await fetch(blogData.textUrl);
+      blogData["text"] = await response.text();
+    }
+    return blogData;
   }
 );
