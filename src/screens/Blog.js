@@ -121,7 +121,7 @@ function Blog() {
                 <Message variant="danger">{error}</Message>
               ) : (
                 filteredBlogPosts.map((post) => (
-                  <BlogCard key={post._id} card={post} />
+                  <BlogCard key={post.slug} card={post} />
                 ))
               )}
             </Col>
