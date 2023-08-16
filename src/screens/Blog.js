@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBlogPostList } from "../actions/blogActions";
+import { fetchBlogPostList } from "../store/features";
 import { db } from "../firebase/firebaseConfig";
 
 import {

@@ -4,7 +4,7 @@ import {
   tutorialListReducers,
   tutorialPageReducers,
 } from "../reducers/tutorialReducers";
-import { blogListReducers, blogPostReducers } from "../reducers/blogReducers";
+import { blogListReducers, blogPostReducers } from "./features";
 
 const reducer = {
   userSignin: userSigninReducer,
