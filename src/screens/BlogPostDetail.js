@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { listBlogPost } from "../actions/blogActions";
+import { fetchBlogPostBySlug } from "../store/features";
 import BlogPostDetailHeader from "../components/blogs/BlogPostDetailHeader";
 import { Container, Row, Col } from "react-bootstrap";
 import BlogPostDetailArticle from "../components/blogs/BlogPostDetailArticle";
@@ -15,7 +15,7 @@ const BlogPostDetail = ({ match }) => {
   const { blogPost } = blogPostSelector;
 
   useEffect(() => {
-    dispatch(listBlogPost(match.params.slug));
+    dispatch(fetchBlogPostBySlug(match.params.slug));
   }, [dispatch, match]);
 
   return (

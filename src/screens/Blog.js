@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listBlogPosts } from "../actions/blogActions";
+import { fetchBlogPostList } from "../store/features";
 import { db } from "../firebase/firebaseConfig";
 
 import {
@@ -26,7 +26,7 @@ function Blog() {
   const { error, loading, blogPosts } = blogPostList;
 
   useEffect(() => {
-    dispatch(listBlogPosts());
+    dispatch(fetchBlogPostList());
   }, [dispatch]);
 
   useEffect(() => {
@@ -38,7 +38,10 @@ function Blog() {
           // doc.data() is never undefined for query doc snapshots
           tentativeArray.push({ id: doc.id, ...doc.data() });
         });
-        setCategories([...categories, ...tentativeArray]);
+        setCategories((prevCategories) => [
+          ...prevCategories,
+          ...tentativeArray,
+        ]);
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
@@ -50,18 +53,17 @@ function Blog() {
   }, [blogPosts]);
 
   useEffect(() => {
-    setFilteredBlogPosts([...getFilteredList()]);
-  }, [selectedCategory]);
-
-  function getFilteredList() {
-    // Avoid filter when selectedCategory is null
-    if (!selectedCategory) {
-      return blogPosts;
+    function getFilteredList() {
+      // Avoid filter when selectedCategory is null
+      return selectedCategory
+        ? blogPosts.filter(
+            (item) => item.blogPostCategoryId === selectedCategory
+          )
+        : blogPosts;
     }
-    return blogPosts.filter(
-      (item) => item.blogPostCategoryId === selectedCategory
-    );
-  }
+
+    setFilteredBlogPosts([...getFilteredList()]);
+  }, [selectedCategory, blogPosts]);
 
   return (
     <div className="Blog-page">
@@ -119,7 +121,7 @@ function Blog() {
                 <Message variant="danger">{error}</Message>
               ) : (
                 filteredBlogPosts.map((post) => (
-                  <BlogCard key={post._id} card={post} />
+                  <BlogCard key={post.slug} card={post} />
                 ))
               )}
             </Col>
