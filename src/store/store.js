@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
+  blogListReducers,
+  blogPostReducers,
   tutorialListReducers,
   tutorialPageReducers,
-} from "../reducers/tutorialReducers";
-import { blogListReducers, blogPostReducers, userReducer } from "./features";
+  userReducer,
+} from "./features";
 
 const reducer = {
   userSignin: userReducer,

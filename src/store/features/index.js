@@ -5,4 +5,11 @@ export {
   fetchBlogPostBySlug,
 } from "./blogSlice";
 
+export {
+  listTutorialPage,
+  listTutorials,
+  tutorialListReducers,
+  tutorialPageReducers,
+} from "./tutorialSlice";
+
 export { userReducer, signIn, signOut } from "./userSlice";
