@@ -4,3 +4,5 @@ export {
   fetchBlogPostList,
   fetchBlogPostBySlug,
 } from "./blogSlice";
+
+export { userReducer, signIn, signOut } from "./userSlice";

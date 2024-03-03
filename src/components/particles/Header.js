@@ -14,7 +14,7 @@ import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 
-import { signOut } from "../../actions/userActions";
+import { signOut } from "../../store/features";
 import Logo from "./Logo";
 
 import { db } from "../../firebase/firebaseConfig";
