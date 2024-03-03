@@ -25,20 +25,21 @@ const blogListSlice = createSlice({
   name: "blogPostList",
   initialState: { blogPosts: [] },
   reducers: {},
-  extraReducers: {
-    [fetchBlogPostList.pending]: (state) => {
-      state.loading = true;
-      state.blogPosts = [];
-    },
-    [fetchBlogPostList.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.blogPosts = action.payload;
-      state.error = null;
-    },
-    [fetchBlogPostList.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBlogPostList.pending, (state) => {
+        state.loading = true;
+        state.blogPosts = [];
+      })
+      .addCase(fetchBlogPostList.fulfilled, (state, action) => {
+        state.loading = false;
+        state.blogPosts = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchBlogPostList.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 
@@ -68,20 +69,21 @@ const blogPostSlice = createSlice({
   name: "blogPostSlice",
   initialState: { blogPost: {} },
   reducers: {},
-  extraReducers: {
-    [fetchBlogPostBySlug.pending]: (state) => {
-      state.loading = true;
-      state.blogPost = {};
-    },
-    [fetchBlogPostBySlug.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.blogPost = action.payload;
-      state.error = null;
-    },
-    [fetchBlogPostBySlug.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBlogPostBySlug.pending, (state) => {
+        state.loading = true;
+        state.blogPost = {};
+      })
+      .addCase(fetchBlogPostBySlug.fulfilled, (state, action) => {
+        state.loading = false;
+        state.blogPost = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchBlogPostBySlug.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 
