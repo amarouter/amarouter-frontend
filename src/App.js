@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { auth } from "./firebase/firebaseConfig";
-import { signIn } from "./actions/userActions";
+import { signIn } from "./store/features";
 import HomeScreen from "./screens/HomeScreen";
 import Dashboard from "./screens/Dashboard";
 import Profile from "./screens/Profile";
