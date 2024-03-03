@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import { listTutorials, listTutorialPage } from "../../actions/tutorialActions";
+import { listTutorials, listTutorialPage } from "../../store/features";
 import Loader from "../particles/Loader";
 import Message from "../particles/Message";
 
