@@ -1,19 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { Row, Col, Figure, Container } from "react-bootstrap";
-
 import { format } from "date-fns";
 import trLocale from "date-fns/locale/tr";
+import { doc, getDoc } from "firebase/firestore";
+import { useState, useEffect } from "react";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Figure from "react-bootstrap/Figure";
+import Row from "react-bootstrap/Row";
 
 import { db } from "../../firebase/firebaseConfig";
 
+/* eslint-disable-next-line react/prop-types */
 const BlogPostDetailHeader = ({ authorId, title, readTime, createdAt }) => {
   const [author, setAuthor] = useState({ name: "", surname: "" });
 
   useEffect(() => {
-    const docRef = db.collection("amarouter_users").doc(authorId);
+    const docRef = doc(db, "amarouter_users", authorId);
 
-    docRef
-      .get()
+    getDoc(docRef)
       .then((doc) => {
         if (doc.exists) {
           setAuthor(doc.data());

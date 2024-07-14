@@ -1,7 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const Dashboard = ({ location, history }) => {
+import Header from "../components/particles/Header";
+
+const Dashboard = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   const userSignin = useSelector((state) => state.userSignin);
@@ -9,11 +14,12 @@ const Dashboard = ({ location, history }) => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push(redirect);
+      navigate(redirect);
     }
-  }, [userInfo, history, redirect]);
+  }, [userInfo, navigate, redirect]);
   return (
     <div className="component-blog">
+      <Header />
       <h2>Dashboard</h2>
       <h3>Profil</h3>
       <p>Profil Bilgileri</p>

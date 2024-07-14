@@ -1,3 +1,4 @@
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { db } from "../../firebase/firebaseConfig";
@@ -5,8 +6,9 @@ import { db } from "../../firebase/firebaseConfig";
 export const listTutorials = createAsyncThunk(
   "tutorialList/fetchTutorials",
   async (slug) => {
-    const docRef = db.collection("tutorials");
-    const snapshot = await docRef.where("slug", "==", slug).get();
+    const tutorialsCollection = collection(db, "tutorials");
+    const q = query(tutorialsCollection, where("slug", "==", slug));
+    const snapshot = await getDocs(q);
 
     let data = [];
     if (snapshot && !snapshot.empty) {
@@ -22,8 +24,9 @@ export const listTutorials = createAsyncThunk(
 export const listTutorialPage = createAsyncThunk(
   "tutorialPage/fetchTutorialPage",
   async (params) => {
-    const docRef = db.collection("tutorials");
-    const snapshot = await docRef.where("slug", "==", params.slug).get();
+    const tutorialsCollection = collection(db, "tutorials");
+    const q = query(tutorialsCollection, where("slug", "==", params.slug));
+    const snapshot = await getDocs(q);
 
     let data = [];
     if (snapshot && !snapshot.empty) {
@@ -33,7 +36,10 @@ export const listTutorialPage = createAsyncThunk(
     }
 
     const tutorialData = data[0];
-    if (tutorialData && tutorialData.hasOwnProperty("sections")) {
+    if (
+      tutorialData &&
+      Object.prototype.hasOwnProperty.call(tutorialData, "sections")
+    ) {
       const section = tutorialData.sections.find(
         (element) => element.slug === params.sectionSlug
       );

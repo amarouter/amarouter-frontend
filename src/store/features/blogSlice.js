@@ -1,13 +1,13 @@
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { db } from "../../firebase/firebaseConfig";
 
 export const fetchBlogPostList = createAsyncThunk(
   "blogPost/fetchAll",
   async () => {
-    const docRef = db.collection("blog_posts");
-    const snapshot = await docRef.get();
+    const querySnapshot = await getDocs(collection(db, "blog_posts"));
 
-    const blogPostList = snapshot.docs.map((doc) => {
+    const blogPostList = querySnapshot.docs.map((doc) => {
       const data = doc.data() || {};
       let blogPost = {};
       if (data.createdAt) {
@@ -23,7 +23,7 @@ export const fetchBlogPostList = createAsyncThunk(
 
 const blogListSlice = createSlice({
   name: "blogPostList",
-  initialState: { blogPosts: [] },
+  initialState: { blogPosts: [], error: null, loading: true },
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -46,8 +46,9 @@ const blogListSlice = createSlice({
 export const fetchBlogPostBySlug = createAsyncThunk(
   "blogPost/fetchBySlug",
   async (slug) => {
-    const docRef = db.collection("blog_posts");
-    const snapshot = await docRef.where("slug", "==", slug).get();
+    const docRef = collection(db, "blog_posts");
+    const q = query(docRef, where("slug", "==", slug));
+    const snapshot = await getDocs(q);
 
     const data = snapshot.docs[0]?.data() || {};
     let blogPost = {};
@@ -67,7 +68,7 @@ export const fetchBlogPostBySlug = createAsyncThunk(
 
 const blogPostSlice = createSlice({
   name: "blogPostSlice",
-  initialState: { blogPost: {} },
+  initialState: { blogPost: {}, error: null, loading: true },
   reducers: {},
   extraReducers: (builder) => {
     builder

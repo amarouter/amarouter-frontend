@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import ReactMarkdown from "react-markdown";
 
 import Loader from "../particles/Loader";
@@ -15,7 +15,7 @@ const BlogPostDetailArticle = ({ blogPostSelector }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <article>
-          <ReactMarkdown children={blogPost.text} />
+          <ReactMarkdown>{blogPost.text}</ReactMarkdown>
         </article>
       )}
     </div>

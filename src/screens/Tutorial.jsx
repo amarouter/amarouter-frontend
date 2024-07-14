@@ -1,11 +1,13 @@
-import React from "react";
 import { useSelector } from "react-redux";
-import { Container, Row, Col } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
 import TutorialDetailArticle from "../components/tutorials/TutorialDetailArticle";
 import TutorialDetailAside from "../components/tutorials/TutorialDetailAside";
 import Header from "../components/particles/Header";
 
+// eslint-disable-next-line react/prop-types
 const Tutorial = ({ match }) => {
   const tutorialListSelector = useSelector((state) => state.tutorialList);
   const { error } = tutorialListSelector;
