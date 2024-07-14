@@ -1,26 +1,25 @@
-import React, { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Figure from "react-bootstrap/Figure";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBlogPostList } from "../store/features";
-import { db } from "../firebase/firebaseConfig";
-
-import {
-  Container,
-  Row,
-  Col,
-  Figure,
-  ToggleButton,
-  ButtonGroup,
-} from "react-bootstrap";
 
 import BlogCard from "../components/blogs/BlogCard";
 import Loader from "../components/particles/Loader";
 import Message from "../components/particles/Message";
 import Header from "../components/particles/Header";
+import { db } from "../firebase/firebaseConfig";
+import { fetchBlogPostList } from "../store/features";
 
 function Blog() {
   const dispatch = useDispatch();
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [filteredBlogPosts, setFilteredBlogPosts] = useState([]);
   const blogPostList = useSelector((state) => state.blogPostList);
   const { error, loading, blogPosts } = blogPostList;
@@ -30,8 +29,7 @@ function Blog() {
   }, [dispatch]);
 
   useEffect(() => {
-    db.collection("blog_post_categories")
-      .get()
+    getDocs(collection(db, "blog_post_categories"))
       .then((querySnapshot) => {
         let tentativeArray = [];
         querySnapshot.forEach((doc) => {
@@ -54,7 +52,6 @@ function Blog() {
 
   useEffect(() => {
     function getFilteredList() {
-      // Avoid filter when selectedCategory is null
       return selectedCategory
         ? blogPosts.filter(
             (item) => item.blogPostCategoryId === selectedCategory
@@ -72,49 +69,67 @@ function Blog() {
         <Container>
           <Row className="pt-5">
             <Col className="categories" xs="4">
-              <p className="mr-5">Kategoriler</p>
+              <p className="me-5">Kategoriler</p>
               <ButtonGroup className="button-group" vertical>
-                <ToggleButton
+                <Button
+                  key="all-categories"
                   className="toggle-button"
-                  type="checkbox"
                   variant="secondary"
                   name="radio"
-                  checked={!selectedCategory}
-                  onChange={() => setSelectedCategory(null)}
+                  onClick={() => setSelectedCategory(null)}
                 >
-                  <span className="ml-2">Tüm Kategoriler</span>
-                </ToggleButton>
+                  <Form.Check
+                    type="radio"
+                    id="all-categories"
+                    name="categories"
+                    checked={!selectedCategory}
+                    label="Tüm Kategoriler"
+                    onChange={() => setSelectedCategory(null)}
+                  />
+                </Button>
                 {categories.map((item, index) => (
-                  <ToggleButton
-                    className="toggle-button"
+                  <Button
                     key={index}
                     id={`radio-${index}`}
-                    type="checkbox"
+                    className="toggle-button mt-2"
                     variant="secondary"
                     name="radio"
                     value={item.id}
-                    checked={selectedCategory === item.id}
-                    onChange={(e) => setSelectedCategory(e.currentTarget.value)}
+                    onClick={(e) => setSelectedCategory(e.currentTarget.value)}
                   >
-                    <Figure xs={4}>
-                      <Figure.Image
-                        className="mt-4 ml-2"
-                        width={25}
-                        height={25}
-                        alt={item.name}
-                        src={item.icon_url}
-                      />
-                    </Figure>
-                    <span className="ml-1" id={item.id}>
-                      {item.name}
-                    </span>
-                  </ToggleButton>
+                    <Form.Check
+                      type="radio"
+                      key={index}
+                      id={`radio-${index}`}
+                      name="categories"
+                      value={item.id}
+                      checked={selectedCategory === item.id}
+                      label={
+                        <div className="d-flex align-items-center">
+                          <Figure xs={4} className="my-0">
+                            <Figure.Image
+                              className="ms-2 my-0"
+                              width={25}
+                              height={25}
+                              alt={item.name}
+                              src={item.icon_url}
+                            />
+                          </Figure>
+                          <span className="ms-1" id={item.id}>
+                            {item.name}
+                          </span>
+                        </div>
+                      }
+                      onChange={(e) =>
+                        setSelectedCategory(e.currentTarget.value)
+                      }
+                    />
+                  </Button>
                 ))}
               </ButtonGroup>
             </Col>
-
             <Col xs="8">
-              <br></br>
+              <br />
               {loading ? (
                 <Loader />
               ) : error ? (

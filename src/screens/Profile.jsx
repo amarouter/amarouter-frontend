@@ -1,8 +1,9 @@
-import React from "react";
+import Header from "../components/particles/Header";
 
 const Profile = () => {
   return (
     <div>
+      <Header />
       <h2>Profil</h2>
       <h3>Profil</h3>
       <p>Profil Bilgileri</p>

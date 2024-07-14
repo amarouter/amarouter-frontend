@@ -1,21 +1,23 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import Col from "react-bootstrap/Col";
+import Figure from "react-bootstrap/Figure";
+import Row from "react-bootstrap/Row";
 import { useSelector } from "react-redux";
-import { Row, Col, Figure } from "react-bootstrap";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import { useLocation, useNavigate } from "react-router-dom";
+import "firebaseui/dist/firebaseui.css";
 
-import { auth, uiConfig } from "../firebase/firebaseConfig";
+import { ui, uiConfig } from "../firebase/firebaseConfig";
 import Header from "../components/particles/Header";
 import Logo from "../components/particles/Logo";
-
 import javaScriptLogo from "../images/JavaScriptLogo.png";
 import pythonLogo from "../images/pythonLogo.png";
 import sqlLogo from "../images/sqlLogo.png";
-import VideoPhoto from "../images/VideoPhoto.png";
 import RehberlerPhoto from "../images/RehberlerPhoto.png";
 import BlogPhoto from "../images/BlogPhoto.png";
-import CeviriPhoto from "../images/CeviriPhoto.png";
 
-const HomeScreen = ({ location, history }) => {
+const HomeScreen = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const redirect = location.search
     ? location.search.split("=")[1]
     : "/dashboard";
@@ -26,6 +28,8 @@ const HomeScreen = ({ location, history }) => {
   // "Sign in with Google" yazisi yerine "Continue with Google" yazisi gelmesi icin.
 
   useEffect(() => {
+    ui.start("#firebaseui-auth-container", uiConfig);
+
     setTimeout(() => {
       let signInText = document.getElementsByClassName("firebaseui-idp-text");
 
@@ -39,9 +43,9 @@ const HomeScreen = ({ location, history }) => {
 
   useEffect(() => {
     if (userInfo) {
-      history.push(redirect);
+      navigate(redirect);
     }
-  }, [userInfo, history, redirect]);
+  }, [userInfo, navigate, redirect]);
 
   return (
     <div className="Home-page">
@@ -56,7 +60,7 @@ const HomeScreen = ({ location, history }) => {
                   <Logo />
                 </Row>
                 <Row className="justify-content-md-center">
-                  <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
+                  <div id="firebaseui-auth-container"></div>
                 </Row>
               </Col>
               <Col sm={7}></Col>
@@ -71,36 +75,42 @@ const HomeScreen = ({ location, history }) => {
               <h3>Popüler kursları Öğrenmek için doğru yerdesiniz.</h3>
             </Row>
             <Row id="rowLogo" className="mb-5">
-              <Figure xs={4} md={4}>
-                <Figure.Image
-                  width={100}
-                  height={100}
-                  alt="JavaScript"
-                  src={javaScriptLogo}
-                />
-                <Figure.Caption>JavaScript</Figure.Caption>
-              </Figure>
-              <Figure xs={4} md={4}>
-                <Figure.Image
-                  width={100}
-                  height={100}
-                  alt="Python"
-                  src={pythonLogo}
-                />
-                <Figure.Caption>Python</Figure.Caption>
-              </Figure>
-              <Figure xs={4} md={4}>
-                <Figure.Image
-                  width={100}
-                  height={100}
-                  alt="SQL"
-                  src={sqlLogo}
-                />
-                <Figure.Caption>SQL</Figure.Caption>
-              </Figure>
+              <Col xs={4} md={4}>
+                <Figure>
+                  <Figure.Image
+                    width={100}
+                    height={100}
+                    alt="JavaScript"
+                    src={javaScriptLogo}
+                  />
+                  <Figure.Caption>JavaScript</Figure.Caption>
+                </Figure>
+              </Col>
+              <Col xs={4} md={4}>
+                <Figure>
+                  <Figure.Image
+                    width={100}
+                    height={100}
+                    alt="Python"
+                    src={pythonLogo}
+                  />
+                  <Figure.Caption>Python</Figure.Caption>
+                </Figure>
+              </Col>
+              <Col xs={4} md={4}>
+                <Figure>
+                  <Figure.Image
+                    width={100}
+                    height={100}
+                    alt="SQL"
+                    src={sqlLogo}
+                  />
+                  <Figure.Caption>SQL</Figure.Caption>
+                </Figure>
+              </Col>
             </Row>
             <Row id="rowPhoto">
-              <Col xs={6} md={3}>
+              <Col xs={6} md={6}>
                 <Figure>
                   <Figure.Image
                     width={250}
@@ -108,29 +118,14 @@ const HomeScreen = ({ location, history }) => {
                     alt="JavaScript"
                     src={RehberlerPhoto}
                   />
-                  <div className="centered-text">REHBERLER</div>
+                  <div>REHBERLER</div>
                   <Figure.Caption>
                     Başucu kitabı niteliğindeki Rehberler sayesinde nokta atışı
                     araştırmalar yapın.
                   </Figure.Caption>
                 </Figure>
               </Col>
-              <Col xs={6} md={3}>
-                <Figure>
-                  <Figure.Image
-                    width={250}
-                    height={250}
-                    alt="JavaScript"
-                    src={VideoPhoto}
-                  />
-                  <div className="centered-text">VİDEO KURSLAR</div>
-                  <Figure.Caption>
-                    Güncel Video Kurslar sayesinde kendinize yeni yetenekler
-                    kazandırın.
-                  </Figure.Caption>
-                </Figure>
-              </Col>
-              <Col xs={6} md={3}>
+              <Col xs={6} md={6}>
                 <Figure>
                   <Figure.Image
                     width={250}
@@ -138,23 +133,9 @@ const HomeScreen = ({ location, history }) => {
                     alt="JavaScript"
                     src={BlogPhoto}
                   />
-                  <div className="centered-text">BLOG YAZILARI</div>
+                  <div>BLOG YAZILARI</div>
                   <Figure.Caption>
                     Özenle hazırlanmış Blog yazılarıyla vizyonunuzu genişletin.
-                  </Figure.Caption>
-                </Figure>
-              </Col>
-              <Col xs={6} md={3}>
-                <Figure>
-                  <Figure.Image
-                    width={250}
-                    height={250}
-                    alt="JavaScript"
-                    src={CeviriPhoto}
-                  />
-                  <div className="centered-text">ÇEVİRİLER</div>
-                  <Figure.Caption>
-                    Çeviri kitaplardan faydalanın.
                   </Figure.Caption>
                 </Figure>
               </Col>

@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { Fragment, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Navbar,
-  NavDropdown,
-  Button,
-  ButtonGroup,
-  Dropdown,
-  DropdownButton,
-  InputGroup,
-  FormControl,
-} from "react-bootstrap";
-import { BsSearch } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Container from "react-bootstrap/Container";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+// import { BsSearch } from "react-icons/bs";
+import { Link, useLocation } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 
 import { signOut } from "../../store/features";
@@ -20,18 +18,17 @@ import Logo from "./Logo";
 import { db } from "../../firebase/firebaseConfig";
 
 const Header = () => {
+  const location = useLocation();
   const dispatch = useDispatch();
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const [tutorials, setTutorials] = useState([]);
 
   useEffect(() => {
-    db.collection("tutorials")
-      .get()
+    getDocs(collection(db, "tutorials"))
       .then((querySnapshot) => {
         let tentativeArray = [];
         querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
           tentativeArray.push({ id: doc.id, ...doc.data() });
         });
         setTutorials([...tentativeArray]);
@@ -41,15 +38,16 @@ const Header = () => {
       });
   }, []);
 
-  const signoutHandler = (e) => {
+  const signoutHandler = () => {
     dispatch(signOut());
   };
 
   return (
     <header className="App-header pt-3">
-      <Navbar expand="lg">
-        <div className="container">
-          <div className="collapse navbar-collapse" id="navbarsExample07">
+      <Navbar expand="sm">
+        <Container>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className="text-light navbar-toggler" />
+          <Navbar.Collapse className="justify-content-end me-5">
             {userInfo ? (
               <LinkContainer to="/dashboard">
                 <Navbar.Brand>
@@ -57,10 +55,11 @@ const Header = () => {
                 </Navbar.Brand>
               </LinkContainer>
             ) : (
-              <div></div>
+              <Fragment />
             )}
-            <ul className="navbar-nav ml-auto mr-2">
+            {/* <ul className="navbar-nav ms-auto me-2">
               <li className="nav-item active">
+                // from react-bootstrap
                 <InputGroup>
                   <FormControl
                     id="txtSearch"
@@ -73,14 +72,14 @@ const Header = () => {
                   </Button>
                 </InputGroup>
               </li>
-            </ul>
+            </ul> */}
             <DropdownButton
               as={ButtonGroup}
               id="dropdown-basic-button"
               variant="outline-light"
               title="Rehberler"
-              className="ml-4"
               size="lg"
+              className="me-4"
             >
               {tutorials.map((item, index) => (
                 <LinkContainer to={`/tutorial/${item.slug}`} key={index}>
@@ -89,12 +88,12 @@ const Header = () => {
               ))}
             </DropdownButton>
             <Link to="/blog">
-              <Button variant="outline-light" className="ml-4" size="lg">
+              <Button variant="outline-light" size="lg">
                 Blog
               </Button>
             </Link>
             {userInfo ? (
-              <NavDropdown title={userInfo.email} id="username">
+              <NavDropdown title={userInfo.email} id="username" className="ms-4">
                 <LinkContainer to="/profile">
                   <NavDropdown.Item>Profil</NavDropdown.Item>
                 </LinkContainer>
@@ -104,15 +103,17 @@ const Header = () => {
                   </NavDropdown.Item>
                 </LinkContainer>
               </NavDropdown>
+            ) : location.pathname === "/" ? (
+              <Fragment />
             ) : (
-              <Link to="/">
-                <Button variant="outline-light" className="ml-4" size="lg">
+              <Link to="/" className="ms-4">
+                <Button variant="outline-light" size="lg">
                   Giriş Yap
                 </Button>
               </Link>
             )}
-          </div>
-        </div>
+          </Navbar.Collapse>
+        </Container>
       </Navbar>
     </header>
   );

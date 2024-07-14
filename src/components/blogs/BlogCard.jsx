@@ -1,9 +1,12 @@
-import React from "react";
-
+/* eslint-disable react/prop-types */
 import { format } from "date-fns";
 import trLocale from "date-fns/locale/tr";
 
-import { Container, Row, Col, Figure, Card } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Figure from "react-bootstrap/Figure";
+import Row from "react-bootstrap/Row";
 import { LinkContainer } from "react-router-bootstrap";
 
 const BlogCard = ({ card }) => {

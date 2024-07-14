@@ -1,23 +1,25 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import ListGroup from "react-bootstrap/ListGroup";
 import { useDispatch, useSelector } from "react-redux";
-import { ListGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 
 import { listTutorials, listTutorialPage } from "../../store/features";
 import Loader from "../particles/Loader";
 import Message from "../particles/Message";
 
-const TutorialDetailAside = ({ match }) => {
+const TutorialDetailAside = () => {
+  const { pageSlug, sectionSlug, slug } = useParams();
+  const location = useLocation();
   const dispatch = useDispatch();
   const tutorialListSelector = useSelector((state) => state.tutorialList);
   const { loading, error, tutorials } = tutorialListSelector;
 
   useEffect(() => {
-    dispatch(listTutorials(match.params.slug));
-    if (match.params.pageSlug) {
-      dispatch(listTutorialPage(match.params));
+    dispatch(listTutorials(slug));
+    if (pageSlug) {
+      dispatch(listTutorialPage({ pageSlug, sectionSlug, slug }));
     }
-  }, [dispatch, match.params]);
+  }, [dispatch, pageSlug, sectionSlug, slug]);
 
   return (
     <aside>
@@ -27,7 +29,8 @@ const TutorialDetailAside = ({ match }) => {
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
-      ) : !tutorials || !tutorials.hasOwnProperty("sections") ? (
+      ) : !tutorials ||
+        !Object.prototype.hasOwnProperty.call(tutorials, "sections") ? (
         <div>Internal Error</div>
       ) : (
         tutorials.sections.map((section) => {
@@ -40,15 +43,13 @@ const TutorialDetailAside = ({ match }) => {
                     as="li"
                     key={page.slug}
                     className={
-                      window.location.pathname ===
-                      `/tutorial/${match.params.slug}/${section.slug}/${page.slug}`
+                      location.pathname ===
+                      `/tutorial/${slug}/${section.slug}/${page.slug}`
                         ? "active"
                         : null
                     }
                   >
-                    <Link
-                      to={`/tutorial/${match.params.slug}/${section.slug}/${page.slug}`}
-                    >
+                    <Link to={`/tutorial/${slug}/${section.slug}/${page.slug}`}>
                       {page.title}
                     </Link>
                   </ListGroup.Item>

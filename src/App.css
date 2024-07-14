@@ -3,7 +3,7 @@
   background-color: #0f141b;
 }
 
-input {
+.navbar input {
   height: calc(1.5em + 1.5rem + 2px) !important;
   background-color: #00000040 !important;
   color: #dee2e6;
@@ -164,7 +164,7 @@ figcaption {
 }
 
 .component-blog .button-group {
-  width: 75%;
+  width: 70%;
 }
 
 .component-blog .toggle-button {
@@ -177,10 +177,26 @@ figcaption {
   border-bottom-right-radius: 12% 50% !important;
   border-top-left-radius: 12% 50% !important;
   border-top-right-radius: 12% 50% !important;
+  cursor: pointer;
+}
+
+.component-blog .toggle-button .form-check-label {
+  cursor: inherit;
+  /* Inherit cursor from the parent button */
 }
 
 .component-blog .logo {
   max-width: 50%;
+}
+
+.component-blog .form-check {
+  display: flex;
+  align-items: center;
+}
+
+.component-blog .form-check .form-check-input {
+  margin-top: 0;
+  /* Reset any default top margin */
 }
 
 .blog-card .card-header {
@@ -375,4 +391,17 @@ h4 {
   padding: 2%;
   color: #fafafa;
   border-radius: 0.2em;
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.8);
+  /* Light border */
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }

@@ -1,6 +1,5 @@
-import React from "react";
 import { useDispatch } from "react-redux";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { auth } from "./firebase/firebaseConfig";
 import { signIn } from "./store/features";
@@ -28,19 +27,19 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Switch>
-          <Route path="/" component={HomeScreen} exact />
-          <Route path="/dashboard" component={Dashboard} exact />
-          <Route path="/profile" component={Profile} exact />
-          <Route path="/blog" component={Blog} exact />
+        <Routes>
+          <Route path="/" element={<HomeScreen />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/blog" element={<Blog />} />
           <Route
             path="/tutorial/:slug/:sectionSlug/:pageSlug"
-            component={Tutorial}
+            element={<Tutorial />}
           />
-          <Route path="/tutorial/:slug" component={Tutorial} />
-          <Route path="/blog/:slug" component={BlogPostDetail} />
-          <Route component={NotFound} />
-        </Switch>
+          <Route path="/tutorial/:slug" element={<Tutorial />} />
+          <Route path="/blog/:slug" element={<BlogPostDetail />} />
+          <Route element={<NotFound />} />
+        </Routes>
         <Footer />
       </div>
     </BrowserRouter>

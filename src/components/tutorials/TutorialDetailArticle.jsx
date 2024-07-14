@@ -1,10 +1,10 @@
-import React from "react";
 import ReactMarkdown from "react-markdown";
 import { useSelector } from "react-redux";
 
 import Loader from "../particles/Loader";
 import Message from "../particles/Message";
 
+// eslint-disable-next-line react/prop-types
 const TutorialDetailArticle = ({ error }) => {
   const tutorialPageSelector = useSelector((state) => state.tutorialPage);
   const {
@@ -21,7 +21,7 @@ const TutorialDetailArticle = ({ error }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <article>
-          <ReactMarkdown children={tutorialPage.text} />
+          <ReactMarkdown>{tutorialPage.text}</ReactMarkdown>
         </article>
       )}
     </section>
